@@ -1,0 +1,21 @@
+[project]
+name = "enviro"
+version = "0.1.0"
+description = "A platform for managing and using containerized dev environments."
+authors = [
+    {name = "ExoticOnix",email = "mshapirovskyy@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "django (>=5.2.1,<6.0.0)",
+    "gunicorn (>=23.0.0,<24.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
