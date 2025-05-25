@@ -1,0 +1,13 @@
+#!/bin/bash
+
+COMPOSE_FILE="docker-compose.local.yaml"
+SERVICE_NAME="django-web"  # adjust to your main container name
+
+# Handle "up" with build and detached mode
+if [[ "$1" == "up" ]]; then
+    docker compose -f $COMPOSE_FILE up --build -d
+    exit $?
+fi
+
+# Pass through commands like artisan, composer, npm, etc.
+docker compose -f $COMPOSE_FILE exec $SERVICE_NAME "$@"
