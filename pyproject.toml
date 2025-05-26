@@ -11,7 +11,8 @@ dependencies = [
     "django (>=5.2.1,<6.0.0)",
     "gunicorn (>=23.0.0,<24.0.0)",
     "psycopg2-binary (>=2.9.10,<3.0.0)",
-    "django-allauth (>=65.8.1,<66.0.0)"
+    "django-allauth (>=65.8.1,<66.0.0)",
+    "whitenoise (>=6.9.0,<7.0.0)"
 ]
 
 [tool.poetry]

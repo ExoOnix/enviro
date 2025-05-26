@@ -22,6 +22,7 @@ RUN poetry install
 RUN bash scripts/install_tailwind.sh
 
 RUN bash scripts/build.sh
+RUN poetry run python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
