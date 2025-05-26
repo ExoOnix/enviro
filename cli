@@ -17,3 +17,4 @@ fi
 
 # Pass through commands like artisan, composer, npm, etc.
 docker compose -f $COMPOSE_FILE exec $SERVICE_NAME "$@"
+sudo chown -R $USER .
