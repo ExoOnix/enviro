@@ -19,6 +19,10 @@ COPY . /app/
 # Install dependencies
 RUN poetry install
 
+RUN bash scripts/install_tailwind.sh
+
+RUN bash scripts/build.sh
+
 EXPOSE 8000
 
 CMD ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "core.wsgi:application"]
