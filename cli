@@ -9,5 +9,11 @@ if [[ "$1" == "up" ]]; then
     exit $?
 fi
 
+if [[ "$1" == "down" ]]; then
+    docker compose -f $COMPOSE_FILE down
+    exit $?
+fi
+
+
 # Pass through commands like artisan, composer, npm, etc.
 docker compose -f $COMPOSE_FILE exec $SERVICE_NAME "$@"

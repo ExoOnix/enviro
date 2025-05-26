@@ -13,6 +13,7 @@ ENV PYTHONUNBUFFERED=1
 # Install Poetry and ensure it's in PATH
 RUN curl -sSL https://install.python-poetry.org | python3 - && \
     ln -s /root/.local/bin/poetry /usr/local/bin/poetry
+RUN apt-get update && apt-get install -y watchman
 
 COPY . /app/
 
