@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'apps.users',
     # Apps
     'apps.home',
+    
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -78,6 +80,8 @@ MIDDLEWARE = [
     
     # Auth
     "allauth.account.middleware.AccountMiddleware",
+    
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -170,3 +174,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+INTERNAL_IPS = [
+    "172.18.0.2",
+]
