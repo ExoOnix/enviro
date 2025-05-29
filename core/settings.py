@@ -177,4 +177,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INTERNAL_IPS = [
     "172.18.0.2",
+    "127.0.0.1"
 ]
