@@ -1,14 +1,16 @@
 {% load allauth %}
-<section>
-    <h2>
-        {% slot title %}
+<section class="card bg-base-100 shadow">
+    <div class="card-body">
+        <h2 class="card-title">
+            {% slot title %}
+            {% endslot %}
+        </h2>
+        {% slot body %}
         {% endslot %}
-    </h2>
-    {% slot body %}
-    {% endslot %}
-    {% if slots.actions %}
-        <ul>
-            {% for action in slots.actions %}<li>{{ action }}</li>{% endfor %}
-        </ul>
-    {% endif %}
+        {% if slots.actions %}
+            <ul class="card-actions">
+                {% for action in slots.actions %}<li>{{ action }}</li>{% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 </section>

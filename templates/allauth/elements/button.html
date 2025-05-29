@@ -1,6 +1,6 @@
 {% load allauth %}
 {% comment %} djlint:off {% endcomment %}
-<{% if attrs.href %}a href="{{ attrs.href }}" class="link"{% else %}button{% endif %}
+<{% if attrs.href %}a href="{{ attrs.href }}" class="btn"{% else %}button class="btn"{% endif %}
 {% if attrs.form %}form="{{ attrs.form }}"{% endif %}
 {% if attrs.id %}id="{{ attrs.id }}"{% endif %}
 {% if attrs.name %}name="{{ attrs.name }}"{% endif %}
