@@ -8,12 +8,13 @@
     <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css" />
 </head>
 
+{% block body_content %}
 <body>
     {% include "partials/navbar.html" %}
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-            <div role="alert" class="alert alert-info mx-5 mb-3">
+            <div role="alert" class="alert alert-info mx-5 my-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     class="h-6 w-6 shrink-0 stroke-current">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -25,10 +26,10 @@
     </ul>
     {% endif %}
 
-    {% block body_content %}{% endblock %}
-
+    {% block body_content_inner %}{% endblock %}
     {% block scripts %}{% endblock %}
 </body>
+{% endblock %}
 
 </html>
 

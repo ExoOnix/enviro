@@ -1,0 +1,28 @@
+{% extends "allauth/layouts/base.html" %}
+{% load i18n allauth %}
+<body class="min-h-screen bg-base-200">
+    {% block body_content %}
+    <div class="fixed top-0 left-0 right-0 z-50">
+        {% include "partials/navbar.html" %}
+    </div>
+
+    <div class="flex items-center justify-center min-h-screen py-8" style="padding-top:4rem;">
+        <div class="card bg-base-100 shadow-xl max-w-md w-full mx-4">
+            <div id="content" class="card-body">
+                {% if messages %}
+                    {% for message in messages %}
+                        {% element alert level=message.tags %}
+                            {% slot message %}
+                                {{ message }}
+                            {% endslot %}
+                        {% endelement %}
+                    {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    {% block scripts %}{% endblock %}
+    {% endblock %}
+</body>

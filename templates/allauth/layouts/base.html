@@ -4,11 +4,11 @@
 {% block title %}
     {% block head_title %}{% endblock head_title %}
 {% endblock %}
-{% block body_content %}
+{% block body_content_inner %}
     <div class="mx-5">
         {% block content %}
             {% block auth_content %}
             {% endblock auth_content %}
         {% endblock content %}
     </div>
-{% endblock body_content %}
+{% endblock %}
