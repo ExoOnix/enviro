@@ -22,7 +22,7 @@
                 {% endslot %}
             </label>
         {% endif %}
-        <input class="{% if attrs.type == 'checkbox' or attrs.type == 'radio' %}checkbox{% else %}input input-bordered w-full{% endif %}"
+        <input class="{% if attrs.type == 'checkbox' or attrs.type == 'radio' %}checkbox{% else %}input input-bordered w-full validator{% endif %}"
                {% if attrs.required %}required{% endif %}
                {% if attrs.disabled %}disabled{% endif %}
                {% if attrs.readonly %}readonly{% endif %}

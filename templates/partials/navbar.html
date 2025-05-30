@@ -26,22 +26,41 @@
       </svg>
     </label>    
     <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar avatar-placeholder">
+        <div class="bg-neutral text-neutral-content w-24 rounded-full">
+          {% if user.is_authenticated %}
+          <span class="text-xl">{{ user.email|slice:":2" }}</span>
+          {% else %}
+          <span class="text-xl">?</span>
+          {% endif %}
         </div>
       </div>
       <ul
         tabindex="0"
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        {% if user.is_authenticated %}
         <li>
-          <a href="{% url 'account_profile' %}" class="justify-between">
+          <a href="{% url 'account_profile' %}">
             Profile
           </a>
         </li>
-        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+        <li>
+          <a href="{% url 'account_logout' %}">
+            Logout
+          </a>
+        </li>
+        {% else %}
+        <li>
+          <a href="{% url 'account_login' %}">
+            Sign In
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'account_signup' %}">
+            Sign Up
+          </a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </div>
