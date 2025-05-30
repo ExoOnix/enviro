@@ -5,7 +5,7 @@
     {% block head_title %}{% endblock head_title %}
 {% endblock %}
 {% block body_content_inner %}
-<div class="flex flex-col md:flex-row gap-4 md:gap-8 mx-2 md:mx-5">
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 mx-2 md:mx-24">
     {% if request.resolver_match.url_name in 'account_email account_change_password' %}
         {% include "partials/settings_sidebar.html" %}
     {% endif %}
