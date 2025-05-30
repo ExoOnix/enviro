@@ -1,0 +1,14 @@
+<div class="w-64 h-full bg-base-200 p-4 rounded-box">
+  <ul class="menu space-y-2">
+    <li>
+      <a href="{% url 'account_email' %}" class="btn btn-ghost w-full justify-start {% if request.resolver_match.url_name == 'account_email' %}btn-active{% endif %}">
+        Change Email
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'account_change_password' %}" class="btn btn-ghost w-full justify-start {% if request.resolver_match.url_name == 'account_change_password' %}btn-active{% endif %}">
+        Change Password
+      </a>
+    </li>
+  </ul>
+</div>

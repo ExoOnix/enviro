@@ -5,10 +5,15 @@
     {% block head_title %}{% endblock head_title %}
 {% endblock %}
 {% block body_content_inner %}
-    <div class="mx-5">
+<div class="flex flex-col md:flex-row gap-8 mx-5">
+    {% if request.resolver_match.url_name in 'account_email account_change_password' %}
+        {% include "partials/settings_sidebar.html" %}
+    {% endif %}
+    <div class="flex-1">
         {% block content %}
             {% block auth_content %}
             {% endblock auth_content %}
         {% endblock content %}
     </div>
+</div>
 {% endblock %}
