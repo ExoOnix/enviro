@@ -1,11 +1,11 @@
-<div class="w-full md:w-64 bg-base-200 p-4 rounded-box mb-4 md:mb-0">
+<div class="w-full md:w-64 bg-base-200 p-4 rounded-box mb-4 md:mb-0 md:fixed md:top-16 md:left-0 md:h-[calc(100vh-theme(height.16))] flex flex-col">
   <ul class="menu space-y-2 flex-col">
-    <li class="flex-1">
+    <li>
       <a href="{% url 'account_email' %}" class="btn btn-ghost w-full justify-start {% if request.resolver_match.url_name == 'account_email' %}btn-active{% endif %}">
         Change Email
       </a>
     </li>
-    <li class="flex-1">
+    <li>
       <a href="{% url 'account_change_password' %}" class="btn btn-ghost w-full justify-start {% if request.resolver_match.url_name == 'account_change_password' %}btn-active{% endif %}">
         Change Password
       </a>

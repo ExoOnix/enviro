@@ -11,6 +11,9 @@
 {% block body_content %}
 <body>
     {% include "partials/navbar.html" %}
+    {% if request.resolver_match.url_name in 'account_email account_change_password' %}
+    <div class="md:ml-64">
+    {% endif %}
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -22,8 +25,11 @@
                 </svg>
                 <span>{{ message }}</span>
             </div>
-            {% endfor %}
+        {% endfor %}
     </ul>
+    {% endif %}
+    {% if request.resolver_match.url_name in 'account_email account_change_password' %}
+    </div>
     {% endif %}
 
     {% block body_content_inner %}{% endblock %}
