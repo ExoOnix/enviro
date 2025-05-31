@@ -88,6 +88,8 @@ local_settings.py
 .env
 db.sqlite3
 
+/staticfiles
+
 # Tailwind
 static/css/output.css
 static/css/tailwindcss
