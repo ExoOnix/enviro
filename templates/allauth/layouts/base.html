@@ -5,9 +5,33 @@
     {% block head_title %}{% endblock head_title %}
 {% endblock %}
 {% block body_content_inner %}
-<div class="flex flex-col md:flex-row gap-4 md:gap-8 mx-2 md:mx-24">
+<div class="flex flex-col md:flex-row gap-2 md:gap-8 mx-1 md:mx-24">
     {% if request.resolver_match.url_name in 'account_email account_change_password' %}
-        {% include "partials/settings_sidebar.html" %}
+        <!-- Drawer toggle button for mobile -->
+        <div class="md:hidden flex justify-end mb-2">
+            <button id="settings-drawer-btn" class="btn btn-ghost btn-square">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+        </div>
+        <!-- Sidebar for desktop, Drawer for mobile -->
+        <div>
+            <div id="settings-sidebar" class="hidden md:block">
+                {% include "partials/settings_sidebar.html" %}
+            </div>
+            <!-- Drawer overlay -->
+            <div id="settings-drawer-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden"></div>
+            <!-- Drawer content -->
+            <div id="settings-drawer" class="fixed left-0 top-0 h-full w-64 bg-base-200 z-50 transform -translate-x-full transition-transform duration-200 md:hidden flex flex-col">
+                <div class="flex justify-end p-2">
+                    <button id="settings-drawer-close" class="btn btn-ghost btn-square">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+                <div class="flex flex-col h-full">
+                    {% include "partials/settings_sidebar.html" %}
+                </div>
+            </div>
+        </div>
     {% endif %}
     <div class="flex-1">
         {% block content %}
@@ -16,4 +40,32 @@
         {% endblock content %}
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const drawerBtn = document.getElementById('settings-drawer-btn');
+    const drawer = document.getElementById('settings-drawer');
+    const overlay = document.getElementById('settings-drawer-overlay');
+    const closeBtn = document.getElementById('settings-drawer-close');
+
+    if (drawerBtn && drawer && overlay) {
+        drawerBtn.addEventListener('click', function() {
+            drawer.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+        });
+        overlay.addEventListener('click', function() {
+            drawer.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                drawer.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            });
+        }
+    }
+});
+</script>
 {% endblock %}
