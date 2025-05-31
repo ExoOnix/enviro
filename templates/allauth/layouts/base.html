@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body_content_inner %}
 <div class="flex flex-col md:flex-row gap-2 md:gap-8 mx-1 md:mr-24">
-    {% if request.resolver_match.url_name in 'account_email account_change_password' %}
+    {% if request.resolver_match.url_name in 'account_email account_change_password' or request.path == '/accounts/sessions/' %}
         <!-- Drawer toggle button for mobile -->
         <div class="md:hidden flex justify-end mb-2">
             <button id="settings-drawer-btn" class="btn btn-ghost btn-square">
@@ -34,10 +34,12 @@
         </div>
     {% endif %}
     <div class="flex-1 md:ml-64">
-        {% block content %}
-            {% block auth_content %}
-            {% endblock auth_content %}
-        {% endblock content %}
+        <div class="w-full overflow-x-auto">
+            {% block content %}
+                {% block auth_content %}
+                {% endblock auth_content %}
+            {% endblock content %}
+        </div>
     </div>
 </div>
 {% endblock %}

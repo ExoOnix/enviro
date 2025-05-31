@@ -11,7 +11,7 @@
 {% block body_content %}
 <body>
     {% include "partials/navbar.html" %}
-    {% if request.resolver_match.url_name in 'account_email account_change_password' %}
+    {% if request.resolver_match.url_name in 'account_email account_change_password' or request.path == '/accounts/sessions/' %}
     <div class="md:ml-64">
     {% endif %}
     {% if messages %}
@@ -28,7 +28,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-    {% if request.resolver_match.url_name in 'account_email account_change_password' %}
+    {% if request.resolver_match.url_name in 'account_email account_change_password' or request.path == '/accounts/sessions/' %}
     </div>
     {% endif %}
 
