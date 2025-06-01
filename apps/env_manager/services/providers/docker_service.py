@@ -42,7 +42,7 @@ class DockerService(EnvService):
                     f"traefik.http.routers.{router_name}.service": service_name,
                     f"traefik.http.services.{service_name}.loadbalancer.server.port": "8080",
                     f"traefik.http.middlewares.{middleware_stripprefix}.stripprefix.prefixes": path_prefix,
-                    f"traefik.http.routers.{router_name}.middlewares": f"{middleware_stripprefix},{middleware_forwardauth}",
+                    f"traefik.http.routers.{router_name}.middlewares": f"{middleware_forwardauth},{middleware_stripprefix}",
                     f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
                     f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
                     f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User"
