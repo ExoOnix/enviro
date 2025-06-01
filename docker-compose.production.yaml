@@ -57,31 +57,12 @@ services:
       - .env
     networks:
       - traefiknet
-  # TEMPORARY CODE SERVER
-  # This is a temporary service for code-server, which will be removed in the future.
-  code-server:
-    image: codercom/code-server:latest
-    container_name: code-server
-    command:
-      - --auth=none
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.code-server.rule=PathPrefix(`/code`)"
-      - "traefik.http.routers.code-server.entrypoints=web"
-      - "traefik.http.services.code-server.loadbalancer.server.port=8080"
-      - "traefik.http.middlewares.code-server-stripprefix.stripprefix.prefixes=/code"
-      - "traefik.http.routers.code-server.middlewares=code-server-stripprefix,code-server-forwardauth"
-      - "traefik.http.middlewares.code-server-forwardauth.forwardauth.address=http://django-docker:8000/auth/"
-      - "traefik.http.middlewares.code-server-forwardauth.forwardauth.trustForwardHeader=true"
-      - "traefik.http.middlewares.code-server-forwardauth.forwardauth.authResponseHeaders=Remote-User"
-    networks:
-      - traefiknet
-    restart: unless-stopped
-
-
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 volumes:
   postgres_data:
 
 
 networks:
-  traefiknet: {}
+  traefiknet:
+    external: true

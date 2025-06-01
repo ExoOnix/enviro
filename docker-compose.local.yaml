@@ -57,10 +57,12 @@ services:
       - .env
     volumes:
       - .:/app
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - traefiknet
 volumes:
   postgres_data:
 
 networks:
-  traefiknet: {}
+  traefiknet:
+    external: true

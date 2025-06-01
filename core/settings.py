@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'apps.users',
     # Apps
     'apps.home',
+    "apps.env_manager",
     
     "debug_toolbar",
 ]
