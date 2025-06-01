@@ -10,39 +10,55 @@ class DockerService(EnvService):
         self.client = docker.from_env()
     @transaction.atomic
     def create_environment(self, name: str, owner):
+        """Creates a dev environment. It stores the environment in the db and also created the docker container
+
+        Args:
+            name (str): Name of the environment
+            owner (User): Object of the owner of the environment, type User.
+        """
         container = None
         try:
+            env_id = None
+            environment = Environment.objects.create(
+                owner=owner,
+                name=name,
+                image="codercom/code-server:latest",
+                status="initializing",
+            )
+            env_id = environment.id
+            router_name = f"code-server-{env_id}"
+            service_name = f"code-server-{env_id}"
+            middleware_stripprefix = f"code-server-stripprefix-{env_id}"
+            middleware_forwardauth = f"code-server-forwardauth-{env_id}"
+            path_prefix = f"/environment/{env_id}"
+
             container = self.client.containers.run(
                 image="codercom/code-server:latest",
                 command=["--auth=none"],
                 labels={
                     "traefik.enable": "true",
-                    "traefik.http.routers.code-server.rule": "PathPrefix(`/code`)",
-                    "traefik.http.routers.code-server.entrypoints": "web",
-                    "traefik.http.services.code-server.loadbalancer.server.port": "8080",
-                    "traefik.http.middlewares.code-server-stripprefix.stripprefix.prefixes": "/code",
-                    "traefik.http.routers.code-server.middlewares": "code-server-stripprefix,code-server-forwardauth",
-                    "traefik.http.middlewares.code-server-forwardauth.forwardauth.address": "http://django-docker:8000/auth/",
-                    "traefik.http.middlewares.code-server-forwardauth.forwardauth.trustForwardHeader": "true",
-                    "traefik.http.middlewares.code-server-forwardauth.forwardauth.authResponseHeaders": "Remote-User"
+                    f"traefik.http.routers.{router_name}.rule": f"PathPrefix(`{path_prefix}`)",
+                    f"traefik.http.routers.{router_name}.entrypoints": "web",
+                    f"traefik.http.routers.{router_name}.service": service_name,
+                    f"traefik.http.services.{service_name}.loadbalancer.server.port": "8080",
+                    f"traefik.http.middlewares.{middleware_stripprefix}.stripprefix.prefixes": path_prefix,
+                    f"traefik.http.routers.{router_name}.middlewares": f"{middleware_stripprefix},{middleware_forwardauth}",
+                    f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
+                    f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
+                    f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User"
                 },
                 network="traefiknet",
                 restart_policy={"Name": "unless-stopped"},
                 detach=True
             )
 
-            environment = Environment.objects.create(
-                owner=owner,
-                name=name,
-                image=container.image.id,
-                status="running",
-                resource_id=container.id,
-            )
+            environment.resource_id = container.id
+            environment.status = "running"
+            environment.save()
 
             print(f"Container {container.name} started with ID {container.id}")
         except Exception as e:
             print(f"Error creating environment: {e}")
-            # Cleanup container if it was created
             if container:
                 try:
                     print("Cleaning up container...")
@@ -53,6 +69,16 @@ class DockerService(EnvService):
             raise
     @transaction.atomic
     def delete_environment(self, environment_id, user):
+        """Deletes a environment.
+
+        Args:
+            environment_id (int): Id of the environment object.
+            user (User): Object of the user which triggered this action
+
+        Raises:
+            PermissionError: If the current user has no permissions to delete this environment
+            e: Other errors
+        """
         try:
             environment = Environment.objects.get(id=environment_id)
             
@@ -66,9 +92,9 @@ class DockerService(EnvService):
             container.remove()
             
             environment.delete()
-        except docker.errors.NotFound:
-            print(f"Container with id {environment.resource_id} not found, removing Environment record.")
-            environment.delete()
+        # except docker.errors.NotFound:
+        #     print(f"Container with id {environment.resource_id} not found, removing Environment record.")
+        #     environment.delete()
         except Exception as e:
             print(f"Error removing environment: {e}")
             raise e
