@@ -188,3 +188,6 @@ INTERNAL_IPS = [
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+
+ENV_PROVIDER = os.environ.get("ENV_PROVIDER", "docker")
