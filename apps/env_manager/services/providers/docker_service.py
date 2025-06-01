@@ -48,7 +48,7 @@ class DockerService(EnvService):
                     print("Cleaning up container...")
                     container.remove(force=True)
                     print(f"Removed container {container.id}")
-                except DockerException as cleanup_error:
+                except docker.errors.DockerException as cleanup_error:
                     print(f"Failed to clean up container: {cleanup_error}")
             raise
     @transaction.atomic
