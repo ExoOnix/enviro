@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}Onix Enviro{% endblock %}</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="flex flex-col items-center">
+            <span class="text-lg font-semibold mb-2">Loading Environment</span>
+            <span class="loading loading-spinner loading-xl"></span>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            window.location.reload();
+        }, 5000);
+    </script>
+</body>
+</html>
