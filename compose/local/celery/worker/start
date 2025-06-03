@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+poetry run celery -A core worker -l INFO

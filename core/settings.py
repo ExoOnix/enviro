@@ -60,6 +60,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    
+    # Celery
+    'django_celery_beat',
+    
     # Auth
     'allauth',
     'allauth.account',
@@ -192,3 +196,8 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 ENV_PROVIDER = os.environ.get("ENV_PROVIDER", "docker")
+
+# Celery
+
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", "redis://127.0.0.1:6379/0")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", "redis://127.0.0.1:6379/0")

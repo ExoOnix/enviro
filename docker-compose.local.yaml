@@ -60,6 +60,54 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - traefiknet
+  redis:
+    image: redis:7-alpine
+    networks:
+      - traefiknet
+  celery_worker:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    command: /start-celeryworker
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - db
+    networks:
+      - traefiknet
+  celery_beat:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    command: /start-celerybeat
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - db
+    networks:
+      - traefiknet
+  flower:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    command: /start-flower
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - 5557:5555
+    depends_on:
+      - redis
+      - db
+    networks:
+      - traefiknet
 volumes:
   postgres_data:
 
