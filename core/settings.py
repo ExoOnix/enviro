@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     
+    # Manage commands
+    'apps.management',
     # Celery
     'django_celery_beat',
     

@@ -3,4 +3,4 @@
 set -o errexit
 set -o nounset
 
-poetry run python manage.py celery_worker
+poetry run celery -A core worker -l INFO

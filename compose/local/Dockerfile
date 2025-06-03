@@ -1,5 +1,7 @@
 FROM python:3.13
 
+RUN apt update && apt install -y procps 
+
 # Create the app directory
 RUN mkdir /app
 
