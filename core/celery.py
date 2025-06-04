@@ -20,10 +20,3 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # discover and load tasks.py from from all registered Django apps
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
-
-
-@app.task
-def divide(x, y):
-    import time
-    time.sleep(5)
-    return x / y

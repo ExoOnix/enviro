@@ -3,4 +3,6 @@
 set -o errexit
 set -o nounset
 
-poetry run python manage.py celery_worker
+poetry run watchfiles \
+  --filter python \
+  'poetry run celery -A core worker --loglevel=info'

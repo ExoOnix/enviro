@@ -24,15 +24,15 @@ RUN bash scripts/install_tailwind.sh
 RUN bash scripts/build.sh
 RUN poetry run python manage.py collectstatic --noinput
 
-COPY ./compose/local/celery/worker/start /start-celeryworker
+COPY ./compose/production/celery/worker/start /start-celeryworker
 RUN sed -i 's/\r$//g' /start-celeryworker
 RUN chmod +x /start-celeryworker
 
-COPY ./compose/local/celery/beat/start /start-celerybeat
+COPY ./compose/production/celery/beat/start /start-celerybeat
 RUN sed -i 's/\r$//g' /start-celerybeat
 RUN chmod +x /start-celerybeat
 
-COPY ./compose/local/celery/flower/start /start-flower
+COPY ./compose/production/celery/flower/start /start-flower
 RUN sed -i 's/\r$//g' /start-flower
 RUN chmod +x /start-flower
 
