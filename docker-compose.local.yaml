@@ -57,7 +57,6 @@ services:
       - .env
     volumes:
       - .:/app
-      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - traefiknet
   redis:
@@ -71,6 +70,7 @@ services:
     command: /start-celeryworker
     volumes:
       - .:/app
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     env_file:
       - .env
     depends_on:

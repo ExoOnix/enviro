@@ -68,7 +68,7 @@ class DockerService(EnvService):
                     print(f"Failed to clean up container: {cleanup_error}")
             raise
     @transaction.atomic
-    def delete_environment(self, environment_id, user):
+    def delete_environment(self, environment, user):
         """Deletes a environment.
 
         Args:
@@ -79,9 +79,7 @@ class DockerService(EnvService):
             PermissionError: If the current user has no permissions to delete this environment
             e: Other errors
         """
-        try:
-            environment = Environment.objects.get(id=environment_id)
-            
+        try:            
             if environment.owner != user:
                 raise PermissionError("You do not have permission to delete this environment.")
 

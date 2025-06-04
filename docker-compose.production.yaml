@@ -70,6 +70,8 @@ services:
       context: .
       dockerfile: ./compose/production/Dockerfile
     command: /start-celeryworker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     env_file:
       - .env
     depends_on:
