@@ -69,6 +69,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.usersessions',
 
+    # Htmx
+    "django_htmx",
+
     'apps.users',
     # Apps
     'apps.home',
@@ -94,6 +97,7 @@ MIDDLEWARE = [
     # Auth
     "allauth.account.middleware.AccountMiddleware",
     
+    "django_htmx.middleware.HtmxMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 

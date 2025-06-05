@@ -1,3 +1,4 @@
+{% load django_htmx %}
 <!DOCTYPE html>
 <html>
 
@@ -7,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/output.css' %}" rel="stylesheet" type="text/css" />
     <script src="//unpkg.com/alpinejs" defer></script>
+    {% htmx_script %}
 </head>
 
 {% block body_content %}
-<body>
+<body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
     {% include "partials/navbar.html" %}
     {% if request.resolver_match.url_name in 'account_email account_change_password' or request.path == '/accounts/sessions/' %}
     <div class="md:ml-64">
