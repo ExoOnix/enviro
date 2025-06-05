@@ -35,7 +35,7 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 ACCOUNT_LOGIN_METHODS = {'email'}
 
-# LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 
 # Email verification
@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     # Apps
     'apps.home',
     "apps.env_manager",
+    "apps.dashboard",
     
     "debug_toolbar",
 ]

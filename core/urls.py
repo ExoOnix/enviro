@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('apps.home.urls')),
     path('', include('apps.users.urls')),
     path('', include('apps.env_manager.urls')),
+    path('dashboard/', include('apps.dashboard.urls')),
     path('accounts/', include('allauth.urls')),
 ] + debug_toolbar_urls()
