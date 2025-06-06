@@ -4,7 +4,7 @@ from core.celery import app
 
 
 @app.task
-def start_container(environment_id):
+def create_container(environment_id):
     
     client = docker.from_env()
 
@@ -79,5 +79,19 @@ def stop_container(environment_id):
         environment.save()
         
         container.stop()
+    except Exception as e:
+        raise e
+    
+@app.task
+def start_container(environment_id):
+    client = docker.from_env()
+    try:
+        environment = Environment.objects.get(id=environment_id)
+        container = client.containers.get(environment.resource_id)
+        
+        environment.status = "running"
+        environment.save()
+        
+        container.start()
     except Exception as e:
         raise e

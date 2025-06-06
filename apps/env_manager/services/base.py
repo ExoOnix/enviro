@@ -10,3 +10,6 @@ class EnvService(ABC):
     @abstractmethod
     def stop_environment(self, environment, user):
         pass
+    @abstractmethod
+    def start_environment(self, environment, user):
+        pass
