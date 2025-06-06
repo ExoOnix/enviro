@@ -18,13 +18,13 @@ class DockerService(EnvService):
 
         start_container.delay(environment.id)
         
-        return environment.id
+        return environment
     @transaction.atomic
     def delete_environment(self, environment, user):
         """Deletes a environment.
 
         Args:
-            environment_id (int): Id of the environment object.
+            environment (Environment): Object of the environment object.
             user (User): Object of the user which triggered this action
 
         Raises:

@@ -59,11 +59,11 @@ def delete_container(environment_id):
             container.stop()
             container.remove()
             environment.delete()
-        except docker.errors.NotFound:
-            print(f"Container with id {environment.resource_id} not found, removing Environment record.")
-            environment.delete()
         except Exception as e:
             print(f"Error removing environment: {e}")
             raise e
+    except docker.errors.NotFound:
+        print(f"Container with id {environment.resource_id} not found, removing Environment record.")
+        environment.delete()
     except Exception as e:
         raise e

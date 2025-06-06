@@ -5,11 +5,43 @@
 {% block title %}Onix Enviro Dashboard{% endblock %}
 
 {% block body_content_inner %}
-<ul class="mx-8 my-6 list bg-base-100 rounded-box shadow-md">
+<div class="flex justify-end md:mx-48 mt-6">
+    <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn m-1">Create Environment</div>
+        <div
+          tabindex="0"
+          class="dropdown-content card card-sm bg-base-100 z-1 w-64 shadow-md right-0 min-w-0"
+          style="max-width: 100vw;">
+          <div class="card-body">
+            <form 
+              class="flex flex-col gap-2"
+              hx-post="{% url 'create_env' %}"
+              hx-target="#env-list > li:first-child"
+              hx-swap="afterend"
+              hx-on::after-request="if(event.detail.successful) { this.reset(); document.activeElement.blur(); }"
+              >
+              <label class="font-semibold text-sm" for="env-name-input">Create Environment</label>
+              <input 
+                id="env-name-input"
+                name="name"
+                type="text"
+                class="input input-bordered validator w-full"
+                placeholder="Environment name"
+                required
+              />
+              <button type="submit" class="btn btn-primary w-full mt-2">Create</button>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+
+{% comment %} Table {% endcomment %}
+
+<ul id="env-list" class="md:mx-48 my-6 list bg-base-100 rounded-box shadow-md">
     <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Your environments</li>
-    
     {% for env in environments %}
-    <li class="list-row flex items-center gap-4 px-4 py-2">
+    <li class="list-row flex items-center gap-4 px-4 py-2" id="env-{{ env.id }}">
         <div class="flex-1">
             <div>{{ env.name }}</div>
         </div>
@@ -17,19 +49,34 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
             </svg>
-              
         </a>
-        <button class="btn btn-square btn-ghost" title="Stop">
+        {% comment %} <button class="btn btn-square btn-ghost" title="Stop">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
               </svg>
               
-        </button>
-        <button class="btn btn-square btn-ghost" title="Delete">
+        </button> {% endcomment %}
+        <!-- Delete button opens modal -->
+        <button class="btn btn-square btn-ghost" title="Delete" onclick="delete_modal_{{ env.id }}.showModal()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
               </svg>              
         </button>
+        <!-- Modal for delete confirmation -->
+        <dialog id="delete_modal_{{ env.id }}" class="modal">
+          <div class="modal-box">
+            <h3 class="text-lg font-bold">Delete Environment</h3>
+            <p class="py-4">Are you sure you want to delete <b>{{ env.name }}</b>?</p>
+            <div class="modal-action">
+              <form method="dialog">
+                <button class="btn">Cancel</button>
+              </form>
+              <form hx-post="{% url 'delete_env' env.id %}" hx-target="#env-{{ env.id }}" hx-swap="outerHTML">
+                <button type="submit" class="btn btn-error">Delete</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
     </li>
     {% endfor %}
 </ul>
