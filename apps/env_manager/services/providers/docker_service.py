@@ -4,7 +4,7 @@ import docker
 
 # Models
 from ...models import Environment
-from apps.env_manager.tasks import start_container, delete_container
+from apps.env_manager.tasks import start_container, delete_container, stop_container
 
 class DockerService(EnvService):
     def create_environment(self, name: str, owner):
@@ -37,5 +37,20 @@ class DockerService(EnvService):
 
             
             delete_container.delay(environment.id)
+        except Exception as e:
+            raise e
+    @transaction.atomic
+    def stop_environment(self, environment, user):
+        """Pauses a environment using the docker api
+
+        Args:
+            environment (Environment): Environment instance
+            user (User): User instance
+        """
+        try:            
+            if environment.owner != user:
+                raise PermissionError("You do not have permission to delete this environment.")
+            
+            stop_container.delay(environment.id)
         except Exception as e:
             raise e

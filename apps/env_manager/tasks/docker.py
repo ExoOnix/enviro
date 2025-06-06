@@ -67,3 +67,17 @@ def delete_container(environment_id):
         environment.delete()
     except Exception as e:
         raise e
+
+@app.task
+def stop_container(environment_id):
+    client = docker.from_env()
+    try:
+        environment = Environment.objects.get(id=environment_id)
+        container = client.containers.get(environment.resource_id)
+        
+        environment.status = "stopped"
+        environment.save()
+        
+        container.stop()
+    except Exception as e:
+        raise e

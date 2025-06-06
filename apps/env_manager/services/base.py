@@ -5,5 +5,8 @@ class EnvService(ABC):
     def create_environment(self, name: str, owner):
         pass
     @abstractmethod
-    def delete_environment(self, environment_id, user):
+    def delete_environment(self, environment, user):
+        pass
+    @abstractmethod
+    def stop_environment(self, environment, user):
         pass
