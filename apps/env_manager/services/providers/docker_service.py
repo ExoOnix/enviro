@@ -13,7 +13,7 @@ class DockerService(EnvService):
             owner=owner,
             name=name,
             image="codercom/code-server:latest",
-            status="initializing",
+            status="running",
         )
 
         create_container.delay(environment.id)
