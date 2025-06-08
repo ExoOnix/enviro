@@ -20,7 +20,8 @@ def create_container(environment_id):
 
         container = client.containers.run(
             image="codercom/code-server:latest",
-            command=["--auth=none"],
+            command=["-c", "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --auth=none"],
+            entrypoint='bash',
             labels={
                 "traefik.enable": "true",
                 f"traefik.http.routers.{router_name}.rule": f"PathPrefix(`{path_prefix}`)",
