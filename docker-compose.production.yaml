@@ -6,8 +6,8 @@ services:
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - "--entryPoints.web.address=:80"
-    ports:
+      - "--entryPoints.web.address=:8081"
+    ports:h
       - "8081:80"       # HTTP
       - "8091:8080"   # Traefik Dashboard
     volumes:
