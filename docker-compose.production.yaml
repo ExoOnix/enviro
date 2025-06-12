@@ -8,8 +8,8 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entryPoints.web.address=:80"
     ports:
-      - "80:80"       # HTTP
-      - "8080:8080"   # Traefik Dashboard
+      - "8080:80"       # HTTP
+      - "8090:8080"   # Traefik Dashboard
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     networks:
