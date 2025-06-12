@@ -4,10 +4,10 @@ import docker
 
 # Models
 from ...models import Environment
-from apps.env_manager.tasks import create_container, delete_container, stop_container, start_container
+from apps.env_manager.tasks import create_container, create_devcontainer, delete_container, stop_container, start_container
 
 class DockerService(EnvService):
-    def create_environment(self, name: str, owner):
+    def create_environment(self, name: str, owner, env_type="devcontainer"):
         """Creates and returns the Environment DB object before starting the container."""
         environment = Environment.objects.create(
             owner=owner,
@@ -16,9 +16,13 @@ class DockerService(EnvService):
             status="running",
         )
 
-        create_container.delay(environment.id)
+        if env_type == "docker":
+            create_container.delay(environment.id)
+        elif env_type == "devcontainer":
+            create_devcontainer.delay(environment.id)
         
         return environment
+    
     @transaction.atomic
     def delete_environment(self, environment, user):
         """Deletes a environment.
