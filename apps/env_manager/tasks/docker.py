@@ -20,7 +20,7 @@ def create_container(environment_id):
 
         container = client.containers.run(
             image="codercom/code-server:latest",
-            command=["-c", "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --auth=none"],
+            command=["-c", "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"],
             entrypoint='bash',
             labels={
                 "traefik.enable": "true",
