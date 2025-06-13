@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      packages: write  # Allow pushing to GHCR
+      packages: write
+      contents: read
 
     steps:
       - name: Checkout code
