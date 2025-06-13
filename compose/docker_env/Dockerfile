@@ -2,8 +2,6 @@ FROM codercom/code-server:latest
 
 USER root
 
-RUN mkdir -p /home/coder/project
-
 RUN apt-get update && \
     apt-get install -y \
     ca-certificates \
@@ -21,6 +19,8 @@ RUN apt-get update && \
 RUN usermod -aG docker coder
 
 USER coder
+
+RUN mkdir -p /home/coder/project
 
 RUN code-server --install-extension ms-azuretools.vscode-docker
 
