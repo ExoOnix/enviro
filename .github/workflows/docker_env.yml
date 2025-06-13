@@ -28,16 +28,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-
-      - name: Build lowercase image reference
-        id: lower
-        run: |
-          echo "IMAGE_REF=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/enviro_dockerenv" >> $GITHUB_ENV
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: ./compose/docker_env  # Path to your Dockerfile
           file: ./compose/docker_env/Dockerfile
           push: true
-          tags: ghcr.io/${{ env.IMAGE_REF }}/enviro_dockerenv:latest
+          tags: ghcr.io/exoonix/enviro_dockerenv:latest
