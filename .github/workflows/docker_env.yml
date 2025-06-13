@@ -34,4 +34,4 @@ jobs:
           context: ./compose/docker_env  # Path to your Dockerfile
           file: ./compose/docker_env/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/enviro_dockerenv:latest
+          tags: ghcr.io/${{ github.repository_owner.toLowerCase() }}/enviro_dockerenv:latest
