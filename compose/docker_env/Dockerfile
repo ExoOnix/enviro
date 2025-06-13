@@ -22,6 +22,8 @@ RUN usermod -aG docker coder
 
 USER coder
 
+RUN code-server --install-extension ms-azuretools.vscode-docker
+
 ENTRYPOINT ["bash"]
 
 CMD ["-c", "sudo dockerd & code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"]
