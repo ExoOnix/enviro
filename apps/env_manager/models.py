@@ -6,7 +6,7 @@ User = get_user_model()
 
 
 class Environment(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='environments')
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='environments', null=True, blank=True)
     
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=255)
