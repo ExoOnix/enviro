@@ -2,6 +2,7 @@ import docker
 from ..models import Environment
 from core.celery import app
 
+from django.conf import settings
 
 @app.task
 def create_container(environment_id):
@@ -18,8 +19,8 @@ def create_container(environment_id):
         middleware_forwardauth = f"code-server-forwardauth-{env_id}"
         path_prefix = f"/environment/{env_id}"
 
-        container = client.containers.run(
-            image="codercom/code-server:latest",
+        run_kwargs = dict(
+            image=settings.ENV_IMAGE,
             command=["-c", "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"],
             entrypoint='bash',
             labels={
@@ -38,6 +39,10 @@ def create_container(environment_id):
             restart_policy={"Name": "unless-stopped"},
             detach=True
         )
+        if settings.DOCKER_RUNTIME != "default":
+            run_kwargs["runtime"] = settings.DOCKER_RUNTIME
+
+        container = client.containers.run(**run_kwargs)
         
         environment.resource_id = container.id
         environment.status = "running"
