@@ -21,8 +21,6 @@ def create_container(environment_id):
 
         run_kwargs = dict(
             image=settings.ENV_IMAGE,
-            command=["-c", "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"],
-            entrypoint='bash',
             labels={
                 "traefik.enable": "true",
                 f"traefik.http.routers.{router_name}.rule": f"PathPrefix(`{path_prefix}`)",
@@ -39,6 +37,13 @@ def create_container(environment_id):
             restart_policy={"Name": "unless-stopped"},
             detach=True
         )
+        # Only set command and entrypoint if using codercom/code-server:latest
+        if settings.ENV_IMAGE == "codercom/code-server:latest":
+            run_kwargs["command"] = [
+                "-c",
+                "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"
+            ]
+            run_kwargs["entrypoint"] = "bash"
         if settings.DOCKER_RUNTIME != "default":
             run_kwargs["runtime"] = settings.DOCKER_RUNTIME
 
