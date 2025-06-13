@@ -3,8 +3,8 @@ from .models import Environment
 
 @admin.register(Environment)
 class EnvironmentAdmin(admin.ModelAdmin):
-    def get_readonly_fields(self, request, obj=None):
-        return [field.name for field in self.model._meta.fields]
+    # def get_readonly_fields(self, request, obj=None):
+    #     return [field.name for field in self.model._meta.fields]
 
     def has_add_permission(self, request):
         return False
