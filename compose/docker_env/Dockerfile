@@ -17,7 +17,7 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN sudo apt-get update && \
-    sudo apt-get install python3 python3-venv python3-pip
+    sudo apt-get install -y python3 python3-venv python3-pip
 
 RUN usermod -aG docker coder
 
