@@ -67,7 +67,8 @@ def delete_container(environment_id):
         container = client.containers.get(environment.resource_id)
         
         try:
-            container.stop()
+            if container.status == 'running':
+                container.kill()
             container.remove()
             environment.delete()
         except Exception as e:
