@@ -16,12 +16,16 @@ RUN apt-get update && \
     apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN sudo apt-get update && \
+    sudo apt-get install python3 python3-venv python3-pip
+
 RUN usermod -aG docker coder
 
 USER coder
 
 RUN mkdir -p /home/coder/project
 
+RUN code-server --install-extension ms-python.python
 RUN code-server --install-extension ms-azuretools.vscode-docker
 
 ENTRYPOINT ["bash"]
