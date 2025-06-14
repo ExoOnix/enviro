@@ -7,7 +7,13 @@
 {% block body_content_inner %}
 <div class="flex justify-end md:mx-48 mt-6">
     <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-primary m-1">Create Environment</div>
+        <div id="create-env-button"
+        tabindex="0"
+        role="button"
+        class="btn btn-primary m-1{% if environment_limit != 0 and environments|length >= environment_limit %} btn-disabled{% endif %}"
+        {% if environment_limit != 0 and environments|length >= environment_limit %}disabled{% endif %}>
+          Create Environment
+        </div>
         <div
           tabindex="0"
           class="dropdown-content card card-sm bg-base-100 z-1 w-64 shadow-md right-0 min-w-0"
@@ -39,7 +45,13 @@
 {% comment %} Table {% endcomment %}
 
 <ul id="env-list" class="md:mx-48 my-6 list bg-base-100 rounded-box shadow-md">
-    <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Your environments</li>
+    <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Your environments
+      <span id="env_count">
+        {% if environment_limit != 0 %}
+          {{ environments|length }}/{{ environment_limit }}
+        {% endif %}
+      </span>
+    </li>
     {% for env in environments %}
     <li class="list-row flex items-center gap-4 px-4 py-2" id="env-{{ env.id }}">
         <div class="flex-1">

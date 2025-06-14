@@ -1,0 +1,16 @@
+{% comment %} Count OOB {% endcomment %}
+<span id="env_count" hx-swap-oob="true">
+  {% if environment_limit != 0 %}
+    {{ env_count }}/{{ environment_limit }}
+  {% endif %}
+</span>
+
+{% comment %} Disable creation button OOB {% endcomment %}
+<div id="create-env-button"
+  tabindex="0"
+  role="button"
+  class="btn btn-primary m-1{% if environment_limit != 0 and env_count >= environment_limit %} btn-disabled{% endif %}"
+  {% if environment_limit != 0 and env_count >= environment_limit %}disabled{% endif %}
+  hx-swap-oob="true">
+    Create Environment
+</div>

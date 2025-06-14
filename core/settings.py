@@ -221,3 +221,5 @@ ENV_PROVIDER = os.environ.get("ENV_PROVIDER", "docker")
 DOCKER_RUNTIME = os.environ.get("DOCKER_RUNTIME", "default")
 
 ENV_IMAGE = os.environ.get("ENV_IMAGE", "codercom/code-server:latest")
+
+ENV_LIMITS = int(os.environ.get("ENV_LIMITS", "0"))

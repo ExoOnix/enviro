@@ -1,3 +1,22 @@
+{% comment %} Env count OOB {% endcomment %}
+<span id="env_count" hx-swap-oob="true">
+  {% if environment_limit != 0 %}
+    {{ env_count }}/{{ environment_limit }}
+  {% endif %}
+</span>
+
+{% comment %} Disable creation OOB {% endcomment %}
+<div id="create-env-button"
+  tabindex="0"
+  role="button"
+  class="btn btn-primary m-1{% if environment_limit != 0 and env_count >= environment_limit %} btn-disabled{% endif %}"
+  {% if environment_limit != 0 and env_count >= environment_limit %}disabled{% endif %}
+  hx-swap-oob="true">
+    Create Environment
+</div>
+
+
+{% comment %} Row {% endcomment %}
 <li class="list-row flex items-center gap-4 px-4 py-2" id="env-{{ env.id }}">
   <div class="flex-1">
       <span>{{ env.name }}</span>
