@@ -14,7 +14,7 @@
 {% block body_content %}
 <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
     {% include "partials/navbar.html" %}
-    {% if request.resolver_match.url_name in 'account_email account_change_password' or request.path == '/accounts/sessions/' %}
+    {% if request.resolver_match.url_name in 'account_email account_change_password socialaccount_connections' or request.path == '/accounts/sessions/' %}
     <div class="md:ml-64">
     {% endif %}
     {% if messages %}
@@ -31,7 +31,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-    {% if request.resolver_match.url_name in 'account_email account_change_password' or request.path == '/accounts/sessions/' %}
+    {% if request.resolver_match.url_name in 'account_email account_change_password socialaccount_connections' or request.path == '/accounts/sessions/' %}
     </div>
     {% endif %}
 

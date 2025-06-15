@@ -68,7 +68,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.usersessions',
-
+    
+    'allauth.socialaccount',
+    
+    'allauth.socialaccount.providers.github',
     # Htmx
     "django_htmx",
 

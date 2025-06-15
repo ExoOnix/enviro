@@ -6,10 +6,19 @@
       </a>
     </li>
     <li>
-      <a href="{% url 'account_change_password' %}" class="btn btn-ghost w-full justify-start {% if request.resolver_match.url_name == 'account_change_password' %}btn-active{% endif %}">
+      <a href="{% url 'account_change_password' %}" class="btn btn-ghost w-full justify-start {% if request.resolver_match.url_name == 'account_change_password' or request.resolver_match.url_name == 'account_set_password' %}btn-active{% endif %}">
         Change Password
       </a>
     </li>
+    {% url 'socialaccount_connections' as socialaccount_connections %}
+    {% if socialaccount_connections  %}
+    <li>
+      <a href="{{ socialaccount_connections }}"
+        class="btn btn-ghost w-full justify-start {% if request.path == socialaccount_connections %}btn-active{% endif %}">
+        Third-Party Accounts
+      </a>
+    </li>
+    {% endif %}
     <li>
       <a href="/accounts/sessions/" class="btn btn-ghost w-full justify-start {% if request.path == '/accounts/sessions/' %}btn-active{% endif %}">
         Sessions

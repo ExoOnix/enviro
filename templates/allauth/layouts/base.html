@@ -6,7 +6,7 @@
 {% endblock %}
 {% block body_content_inner %}
 <div class="flex flex-col md:flex-row gap-2 md:gap-8 mx-1 md:mr-24">
-    {% if request.resolver_match.url_name in 'account_email account_change_password' or request.path == '/accounts/sessions/' %}
+    {% if request.resolver_match.url_name in 'account_email account_change_password account_set_password socialaccount_connections' or request.path == '/accounts/sessions/' %}
         <!-- Drawer toggle button for mobile -->
         <div class="md:hidden flex justify-start mb-2 ml-2">
             <button id="settings-drawer-btn" class="btn btn-ghost btn-square">
