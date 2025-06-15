@@ -105,4 +105,41 @@
     </li>
     {% endfor %}
 </ul>
+
+
+{% comment %} Feedback model {% endcomment %}
+<!-- Open the modal using ID.showModal() method -->
+<dialog id="feedback_model" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">We'd love your feedback!</h3>
+    <p class="py-4">Help us improve by sharing your thoughts. It only takes a minute!</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+        <a id="give-feedback-btn" role="button" class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdVTE1zIFM5woJ1HNGOnEY5RUL7BIYDfJIN4kwYxJOt9XRudQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">Give Feedback</a>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    const today = new Date().toISOString().slice(0, 10);
+    const lastShown = localStorage.getItem("feedback_modal_last_shown");
+    const feedbackGiven = localStorage.getItem("feedback_given");
+
+    if (lastShown !== today && feedbackGiven !== "true") {
+      setTimeout(() => {
+        feedback_model.showModal();
+        localStorage.setItem("feedback_modal_last_shown", today);
+      }, 3000);
+    }
+
+    document.getElementById("give-feedback-btn")?.addEventListener("click", () => {
+      localStorage.setItem("feedback_given", "true");
+      feedback_model.close();
+    });
+  </script>
 {% endblock %}
