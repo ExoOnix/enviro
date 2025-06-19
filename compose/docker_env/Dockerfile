@@ -7,8 +7,7 @@ RUN apt-get update && \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release \
-    unzip && \
+    lsb-release && \
     mkdir -m 0755 -p /etc/apt/keyrings && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
@@ -25,15 +24,6 @@ RUN usermod -aG docker coder
 USER coder
 
 RUN mkdir -p /home/coder/project
-# Install extra packages
-# Install fnm (Fast Node Manager)
-RUN curl -o- https://fnm.vercel.app/install | bash && \
-    export PATH="/home/coder/.fnm:$PATH" && \
-    /home/coder/.fnm/fnm install 22 && \
-    /home/coder/.fnm/fnm default 22
-
-
-# Install VSCode extensions
 
 RUN code-server --install-extension ms-python.python
 RUN code-server --install-extension ms-azuretools.vscode-docker
