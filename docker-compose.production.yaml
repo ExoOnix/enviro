@@ -13,7 +13,7 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     networks:
-      - traefiknet
+      - onixenvnet
 
   db:
     image: postgres:17
@@ -26,7 +26,7 @@ services:
     env_file:
       - .env
     networks:
-      - traefiknet
+      - onixenvnet
   django-web:
     build:
       context: .
@@ -54,13 +54,13 @@ services:
     env_file:
       - .env
     networks:
-      - traefiknet
+      - onixenvnet
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
   redis:
     image: redis:7-alpine
     networks:
-      - traefiknet
+      - onixenvnet
     volumes:
       - production_redis_data:/data
   celery_worker:
@@ -76,7 +76,7 @@ services:
       - redis
       - db
     networks:
-      - traefiknet
+      - onixenvnet
   celery_beat:
     build:
       context: .
@@ -88,7 +88,7 @@ services:
       - redis
       - db
     networks:
-      - traefiknet
+      - onixenvnet
   flower:
     build:
       context: .
@@ -102,11 +102,11 @@ services:
       - redis
       - db
     networks:
-      - traefiknet
+      - onixenvnet
 volumes:
   postgres_data:
   production_redis_data:
 
 networks:
-  traefiknet:
+  onixenvnet:
     external: true

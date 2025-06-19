@@ -33,7 +33,7 @@ def create_container(environment_id):
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User"
             },
-            network="traefiknet",
+            network="onixenvnet",
             restart_policy={"Name": "unless-stopped"},
             detach=True
         )
