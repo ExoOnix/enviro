@@ -3,8 +3,12 @@ name: Build and Push Environment with docker image
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'compose/docker_env/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'compose/docker_env/**'
 
 jobs:
   build:
