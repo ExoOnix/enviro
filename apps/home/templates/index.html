@@ -2,138 +2,189 @@
 
 {% load static %}
 
-{% block title %}Onix Enviro{% endblock %}
 
 {% block body_content_inner %}
-<div class="py-12 text-center font-light mt-[100px] mb-[200px]">
-    <div class="container mx-auto px-4 max-w-[70vw]">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight lg:text-7xl">
+<div class="py-8 text-center font-light mt-24 mb-24">
+    <div class="container mx-auto px-4 max-w-2xl">
+        <div class="badge badge-info badge-xl">Onix Enviro</div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight lg:text-6xl leading-tight">
             Online development made simple
         </h1>
-        <p class="mt-4 text-base">
-            Enviro accelerates your workflow by providing ready-to-use, cloud-based development environments.
+        <p class="mt-2 text-base">
+            Enviro accelerates your workflow with ready-to-use, cloud-based development environments.
         </p>
-        <a role="button" href="{% url 'dashboard' %}" class="btn btn-outline btn-md mt-3 px-6 text-lg font-medium">
+        <div class="flex justify-center gap-4 mt-4">
+            <a role="button" href="{% url 'dashboard' %}" class="btn btn-primary btn-md px-6 text-base font-medium">
             Get Started
-        </a>
+            </a>
+            <a role="button" href="" class="btn btn-outline btn-md px-6 text-base font-medium">
+            Read Docs
+            </a>
+        </div>
+        
+    </div>
+</div>
+<!-- Product image section -->
+<div class="flex justify-center mb-24">
+    <div class="w-full px-4 sm:px-8 md:px-0 md:w-5/6 lg:w-3/4 xl:w-3/5">
+        <img src="{% static 'home/img/product.png' %}" alt="Product screenshot" class="rounded-lg shadow-lg w-full border border-gray-800 bg-black" />
     </div>
 </div>
 
-<div class="container mx-auto px-4 font-light">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div class="p-4">
-            <div class="card bg-base-100 shadow-lg p-6 rounded-lg h-full flex flex-col">
-                <div class="mb-4">
-                    <h3 class="text-xl font-semibold">
-                        From onboarding to ready
-                    </h3>
+<!-- Why Cloud Development Section -->
+<div class="flex justify-center mb-24">
+    <div class="w-full px-4 sm:px-8 md:px-0 md:w-5/6 lg:w-3/4 xl:w-3/5">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10">Why not Local Development?</h2>
+        <div class="relative flex flex-col md:flex-row items-center md:items-start justify-center gap-12">
+            <!-- Left Problem -->
+            <div class="flex-1 flex flex-col items-center md:items-end text-left">
+                <div class="card bg-base-200 shadow w-full flex flex-col h-full min-h-[300px] md:min-h-[380px]">
+                    <div class="card-body flex-1 flex flex-col">
+                        <h3 class="card-title mb-4 text-xl sm:text-2xl">Environment Setup & Configuration Issues</h3>
+                        <p class="text-lg text-base-content/70">Setting up a local development environment can be time-consuming and error-prone, especially for projects with many dependencies, specific versions (Node, Python, etc.), or complex tools (Docker, databases, etc.). New team members often waste hours or days just getting started.</p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-2xl font-bold">
-                        5 min
+            </div>
+            <!-- Vertical Divider Line -->
+            <div class="hidden md:flex items-stretch">
+                <div class="self-stretch flex items-center">
+                    <div class="h-full border-l-2 border-dashed border-primary mx-0" style="min-height:380px;"></div>
+                </div>
+            </div>
+            <div class="block md:hidden w-64 border-t-2 border-dashed border-primary my-6 mx-auto"></div>
+            <!-- Right Problem -->
+            <div class="flex-1 flex flex-col items-center md:items-start text-left">
+                <div class="card bg-base-200 shadow w-full flex flex-col h-full min-h-[300px] md:min-h-[380px]">
+                    <div class="card-body flex-1 flex flex-col">
+                        <h3 class="card-title mb-4 text-xl sm:text-2xl">Limited Development Accessibility</h3>
+                        <p class="text-lg text-base-content/70">Developers are often tied to their physical machines. Working from different devices, troubleshooting from a mobile or low-spec laptop, or contributing quickly without a full setup is difficult.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Problems with Other Cloud Platforms -->
+<div class="page-break mb-24">
+    <div class="w-full px-4 sm:px-8 md:px-0 md:w-5/6 lg:w-3/4 xl:w-3/5 mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10">Where Other Platforms Fall Short?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Problem 1 -->
+            <div class="card bg-base-200 shadow h-full">
+                <div class="card-body">
+                    <h3 class="card-title text-xl sm:text-2xl mb-4">
+                        <span class="inline-block align-middle mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </span>
+                        Slow Startup Times
+                    </h3>
+                    <p class="text-lg text-base-content/70">Many platforms take minutes to launch environments, interrupting your workflow and wasting valuable time. Onix Enviro gets you coding in seconds.</p>
+                </div>
+            </div>
+            <!-- Problem 2 -->
+            <div class="card bg-base-200 shadow h-full">
+                <div class="card-body">
+                    <h3 class="card-title text-xl sm:text-2xl mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                        </svg>                          
+                        Restricted Technology Support
+                    </h3>
+                    <p class="text-lg text-base-content/70">Some platforms block Docker, databases, or custom packages, limiting what you can build. Onix Enviro gives you full freedom for any stack or tool.</p>
+                </div>
+            </div>
+            <!-- Problem 3 -->
+            <div class="card bg-base-200 shadow h-full">
+                <div class="card-body">
+                    <h3 class="card-title text-xl sm:text-2xl mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                          
+                        Complicated Onboarding
+                    </h3>
+                    <p class="text-lg text-base-content/70">Lengthy setup and confusing steps slow down new users and teams. Onix Enviro makes onboarding effortless—just two clicks to start coding.</p>
+                </div>
+            </div>
+            <!-- Problem 4 -->
+            <div class="card bg-base-200 shadow h-full">
+                <div class="card-body">
+                    <h3 class="card-title text-xl sm:text-2xl mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
+                        </svg>                          
+                        Limited or Unfamiliar Editors
+                    </h3>
+                    <p class="text-lg text-base-content/70">Many platforms force you to use basic or unfamiliar editors, reducing productivity. Onix Enviro brings the full power of Visual Studio Code to your browser.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Features Section -->
+<div class="flex justify-center mb-32">
+    <div class="w-full px-4 sm:px-8 md:px-0 md:w-5/6 lg:w-3/4 xl:w-3/5">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-14">Features</h2>
+        <div class="flex flex-col gap-20">
+            <!-- Feature 1: Online Editors -->
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="w-full md:w-2/3 order-2 md:order-1">
+                    <h3 class="text-3xl font-bold mb-3">Online Editors</h3>
+                    <p class="text-lg text-base-content/70 mb-2">
+                        Run online editors effortlessly, right from your browser. Manage them easily through a centralized dashboard — including full-featured VS Code.
                     </p>
                 </div>
-                <div class="mt-auto">
-                    <p>Register and get to developing straight away.</p>
+                <div class="w-full md:w-1/3 flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
+                    <img src="{% static 'home/img/editor.svg' %}" alt="Online Editors" class="w-48 h-48 md:w-80 md:h-80 object-contain drop-shadow-lg" />
                 </div>
             </div>
-        </div>
-        <div class="p-4">
-            <div class="card bg-base-100 shadow-lg p-6 rounded-lg h-full flex flex-col">
-                <div class="mb-4">
-                    <h3 class="text-xl font-semibold">
-                        Saved time per week
-                    </h3>
-                </div>
-                <div>
-                    <p class="text-2xl font-bold">
-                        4 hr
+            <!-- Feature 2: Modern Tooling -->
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="w-full md:w-2/3 order-2 md:order-1">
+                    <h3 class="text-3xl font-bold mb-3">Modern Tooling</h3>
+                    <p class="text-lg text-base-content/70 mb-2">
+                        Easily run and manage online editors like VS Code in your browser via a simple dashboard. Use any language or tooling app, with built-in Docker support to develop in containers—no local setup needed.
                     </p>
                 </div>
-                <div class="mt-auto">
-                    <p>Enviro saves you time by using preconfigured development environments.</p>
+                <div class="w-full md:w-1/3 flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
+                    <img src="{% static 'home/img/moderntech.svg' %}" alt="Modern Tooling" class="w-48 h-48 md:w-80 md:h-80 object-contain drop-shadow-lg" />
                 </div>
             </div>
-        </div>
-        <div class="p-4">
-            <div class="card bg-base-100 shadow-lg p-6 rounded-lg h-full flex flex-col">
-                <div class="mb-4">
-                    <h3 class="text-xl font-semibold">
-                        Reduction in manual effort
-                    </h3>
-                </div>
-                <div>
-                    <p class="text-2xl font-bold">
-                        30%
+            <!-- Feature 3: Easy Management -->
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="w-full md:w-2/3 order-2 md:order-1">
+                    <h3 class="text-3xl font-bold mb-3">Easy Management</h3>
+                    <p class="text-lg text-base-content/70 mb-2">
+                        Effortlessly manage your development environments and projects through a user-friendly dashboard designed for simplicity and efficiency.
                     </p>
                 </div>
-                <div class="mt-auto">
-                    <p>Instead of configuring packages and setting up your environment, get to programming right away.</p>
+                <div class="w-full md:w-1/3 flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
+                    <img src="{% static 'home/img/management.svg' %}" alt="Easy Management" class="w-48 h-48 md:w-80 md:h-80 object-contain drop-shadow-lg" />
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="py-12 font-light">
-    <div class="container mx-auto px-4 max-w-[80vw]">
-        <h2 class="text-4xl font-bold tracking-tight lg:text-5xl">
-            Develop Anywhere, Without Limits
-        </h2>
-        <p class="mt-4 text-xl">
-            Not everyone has the hardware or permissions to run a full development environment locally. Whether you're using a low-spec machine or working within strict admin restrictions, Enviro gives you instant access to powerful development tools from any device.
-        </p>
-        <p class="mt-4 text-xl">
-            Each project runs in its own isolated, preconfigured Linux environment — no setup hassles, no conflicts. With built-in package management and containerized infrastructure, Enviro ensures a clean, ready-to-code workspace every time. Spend less time configuring and more time building.
-        </p>
-    </div>
-</div>
 
-<div class="py-12 font-light">
-    <div class="container mx-auto px-4 max-w-[80vw]">
-        <div class="flex flex-col md:flex-row items-center my-16">
-            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                <div class="w-full max-w-[500px] mx-auto">
-                    <img src="{% static 'home/img/editor.svg' %}" alt="Online Editors" class="w-full h-auto" />
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 md:pl-8">
-                <h3 class="text-3xl font-bold mb-4">Online Editors</h3>
-                <p class="text-xl">
-                    Run online editors effortlessly, right from your browser. Manage them easily through a centralized dashboard — including
-                    full-featured VS Code.
-                </p>
-            </div>
-        </div>
+<footer class="footer footer-horizontal footer-center bg-base-200 text-primary-content p-10">
+    <aside>
+      <p class="font-bold text-lg">
+        OnixTech
+      </p>
+      <p>Copyright © {% now "Y" %} - All right reserved</p>
+    </aside>
+</footer>
+{% endblock %}
 
-        <div class="flex flex-col md:flex-row-reverse items-center my-16">
-            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pl-8">
-                <div class="w-full max-w-[500px] mx-auto">
-                    <img src="{% static 'home/img/moderntech.svg' %}" alt="Modern Tooling" class="w-full h-auto" />
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 md:pr-8">
-                <h3 class="text-3xl font-bold mb-4">Modern Tooling</h3>
-                <p class="text-xl">
-                    Easily run and manage online editors like VS Code in your browser via a simple dashboard. Use any language or tooling
-                    app, with built-in Docker support to develop in containers—no local setup needed.
-                </p>
-            </div>
-        </div>
 
-        <div class="flex flex-col md:flex-row items-center my-16">
-            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                <div class="w-full max-w-[500px] mx-auto">
-                    <img src="{% static 'home/img/management.svg' %}" alt="Easy Management" class="w-full h-auto" />
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 md:pl-8">
-                <h3 class="text-3xl font-bold mb-4">Easy Management</h3>
-                <p class="text-xl">
-                    Effortlessly manage your development environments and projects through a user-friendly dashboard designed for simplicity and efficiency.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+{% block scripts%}
+    <script>
+        document.documentElement.setAttribute('data-theme', "black");
+    </script>
 {% endblock %}
