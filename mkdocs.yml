@@ -1,0 +1,4 @@
+site_name: OnixTech Enviro Docs
+site_url: https://onixtech.org/docs
+theme:
+  name: material

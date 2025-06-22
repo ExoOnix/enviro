@@ -93,3 +93,8 @@ db.sqlite3
 # Tailwind
 static/css/output.css
 static/css/tailwindcss
+
+# MKDOCS
+# Build files
+/build
+/site
