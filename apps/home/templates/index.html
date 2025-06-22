@@ -28,18 +28,17 @@
 <!-- Product image section -->
 <div class="flex justify-center mb-24">
     <div class="w-full px-4 sm:px-8 md:px-0 md:w-5/6 lg:w-3/4 xl:w-3/5">
-        <img src="{% static 'home/img/product.png' %}" alt="Product screenshot" class="rounded-lg shadow-lg w-full border border-gray-800 bg-black" />
+        <img src="{% static 'home/img/product.png' %}" alt="Product screenshot" class="rounded-lg shadow-lg w-full border border-gray-800 bg-black rounded-lg" />
     </div>
 </div>
-
 <!-- Why Cloud Development Section -->
 <div class="flex justify-center mb-24">
     <div class="w-full px-4 sm:px-8 md:px-0 md:w-5/6 lg:w-3/4 xl:w-3/5">
         <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10">Why not Local Development?</h2>
-        <div class="relative flex flex-col md:flex-row items-center md:items-start justify-center gap-12">
+        <div class="relative flex flex-col md:flex-row items-center md:items-start justify-center gap-4 md:gap-12">
             <!-- Left Problem -->
             <div class="flex-1 flex flex-col items-center md:items-end text-left">
-                <div class="card bg-base-200 shadow w-full flex flex-col h-full min-h-[300px] md:min-h-[380px]">
+                <div class="card bg-base-200 shadow w-full flex flex-col h-full min-h-[220px] md:min-h-[380px]">
                     <div class="card-body flex-1 flex flex-col">
                         <h3 class="card-title mb-4 text-xl sm:text-2xl">Environment Setup & Configuration Issues</h3>
                         <p class="text-lg text-base-content/70">Setting up a local development environment can be time-consuming and error-prone, especially for projects with many dependencies, specific versions (Node, Python, etc.), or complex tools (Docker, databases, etc.). New team members often waste hours or days just getting started.</p>
@@ -52,10 +51,10 @@
                     <div class="h-full border-l-2 border-dashed border-primary mx-0" style="min-height:380px;"></div>
                 </div>
             </div>
-            <div class="block md:hidden w-64 border-t-2 border-dashed border-primary my-6 mx-auto"></div>
+            <div class="block md:hidden w-44 border-t-2 border-dashed border-primary my-2 mx-auto"></div>
             <!-- Right Problem -->
             <div class="flex-1 flex flex-col items-center md:items-start text-left">
-                <div class="card bg-base-200 shadow w-full flex flex-col h-full min-h-[300px] md:min-h-[380px]">
+                <div class="card bg-base-200 shadow w-full flex flex-col h-full min-h-[220px] md:min-h-[380px]">
                     <div class="card-body flex-1 flex flex-col">
                         <h3 class="card-title mb-4 text-xl sm:text-2xl">Limited Development Accessibility</h3>
                         <p class="text-lg text-base-content/70">Developers are often tied to their physical machines. Working from different devices, troubleshooting from a mobile or low-spec laptop, or contributing quickly without a full setup is difficult.</p>
@@ -140,7 +139,7 @@
                     </p>
                 </div>
                 <div class="w-full md:w-1/3 flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
-                    <img src="{% static 'home/img/editor.svg' %}" alt="Online Editors" class="w-full md:w-80 md:h-80 object-contain drop-shadow-lg" />
+                    <img src="{% static 'home/img/editor.svg' %}" alt="Online Editors" class="w-full md:w-80 object-contain drop-shadow-lg rounded-2xl" />
                 </div>
             </div>
             <!-- Feature 2: Modern Tooling -->
@@ -152,7 +151,7 @@
                     </p>
                 </div>
                 <div class="w-full md:w-1/3 flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
-                    <img src="{% static 'home/img/modern-tooling.png' %}" alt="Modern Tooling" class="w-full md:w-80 md:h-80 object-contain drop-shadow-lg" />
+                    <img src="{% static 'home/img/modern-tooling.png' %}" alt="Modern Tooling" class="w-full md:w-80 object-contain drop-shadow-lg rounded-2xl" />
                 </div>
             </div>
             <!-- Feature 3: Easy Management -->
@@ -164,7 +163,7 @@
                     </p>
                 </div>
                 <div class="w-full md:w-1/3 flex justify-center md:justify-end order-1 md:order-2 mb-6 md:mb-0">
-                    <img src="{% static 'home/img/dashboard.svg' %}" alt="Easy Management" class="w-full md:w-80 md:h-80 object-contain drop-shadow-lg" />
+                    <img src="{% static 'home/img/dashboard.svg' %}" alt="Easy Management" class="w-full md:w-80 object-contain drop-shadow-lg rounded-2xl" />
                 </div>
             </div>
         </div>
