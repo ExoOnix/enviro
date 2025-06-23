@@ -109,7 +109,7 @@
 
 {% comment %} Feedback model {% endcomment %}
 <!-- Open the modal using ID.showModal() method -->
-<dialog id="feedback_model" class="modal">
+{% comment %} <dialog id="feedback_model" class="modal">
   <div class="modal-box">
     <h3 class="text-lg font-bold">We'd love your feedback!</h3>
     <p class="py-4">Help us improve by sharing your thoughts. It only takes a minute!</p>
@@ -120,11 +120,11 @@
       </form>
     </div>
   </div>
-</dialog>
+</dialog> {% endcomment %}
 
 {% endblock %}
 
-{% block scripts %}
+{% comment %} {% block scripts %}
   <script>
     const today = new Date().toISOString().slice(0, 10);
     const lastShown = localStorage.getItem("feedback_modal_last_shown");
@@ -142,4 +142,4 @@
       feedback_model.close();
     });
   </script>
-{% endblock %}
+{% endblock %} {% endcomment %}
