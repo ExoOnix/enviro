@@ -17,6 +17,7 @@ def create_container(environment_id):
         service_name = f"code-server-{env_id}"
         middleware_stripprefix = f"code-server-stripprefix-{env_id}"
         middleware_forwardauth = f"code-server-forwardauth-{env_id}"
+        middleware_error = f"code-server-error-{env_id}"
         path_prefix = f"/environment/{env_id}"
 
         run_kwargs = dict(
@@ -28,10 +29,14 @@ def create_container(environment_id):
                 f"traefik.http.routers.{router_name}.service": service_name,
                 f"traefik.http.services.{service_name}.loadbalancer.server.port": "8080",
                 f"traefik.http.middlewares.{middleware_stripprefix}.stripprefix.prefixes": path_prefix,
-                f"traefik.http.routers.{router_name}.middlewares": f"{middleware_forwardauth},{middleware_stripprefix}",
+                f"traefik.http.routers.{router_name}.middlewares": f"{middleware_forwardauth},{middleware_stripprefix},{middleware_error}",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
-                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User"
+                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User",
+                # Error middleware: on 502, forward to django-docker at the same URL
+                f"traefik.http.middlewares.{middleware_error}.errors.status": "502",
+                f"traefik.http.middlewares.{middleware_error}.errors.service": "django",
+                f"traefik.http.middlewares.{middleware_error}.errors.query": "",
             },
             network="onixenvnet",
             restart_policy={"Name": "unless-stopped"},
