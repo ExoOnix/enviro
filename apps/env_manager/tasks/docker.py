@@ -36,7 +36,7 @@ def create_container(environment_id):
                 # Error middleware: on 502, forward to django-docker at the same URL
                 f"traefik.http.middlewares.{middleware_error}.errors.status": "502",
                 f"traefik.http.middlewares.{middleware_error}.errors.service": "django",
-                f"traefik.http.middlewares.{middleware_error}.errors.query": "",
+                f"traefik.http.middlewares.{middleware_error}.errors.query": f"{path_prefix}",
             },
             network="onixenvnet",
             restart_policy={"Name": "unless-stopped"},
