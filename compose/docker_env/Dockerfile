@@ -28,8 +28,6 @@ RUN mkdir -p /home/coder/project
 RUN code-server --install-extension ms-python.python
 RUN code-server --install-extension ms-azuretools.vscode-docker
 
-COPY start.sh start.sh
-
 ENTRYPOINT ["bash"]
 
-CMD ["start.sh"]
+CMD ["-c", "sudo dockerd & code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"]
