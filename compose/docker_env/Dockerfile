@@ -24,10 +24,11 @@ RUN usermod -aG docker coder
 USER coder
 
 RUN mkdir -p /home/coder/project
+RUN mkdir -p /home/coder/logs
 
 RUN code-server --install-extension ms-python.python
 RUN code-server --install-extension ms-azuretools.vscode-docker
 
 ENTRYPOINT ["bash"]
 
-CMD ["-c", "sudo rm -f /var/run/docker/containerd/containerd.pid && sudo dockerd & code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"]
+CMD ["-c", "sudo rm -f /var/run/docker/containerd/containerd.pid && sudo dockerd > /home/coder/logs/dockerd.log 2>&1 & code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none > /home/coder/logs/code-server.log 2>&1"]
