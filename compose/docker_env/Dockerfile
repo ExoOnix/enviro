@@ -29,7 +29,7 @@ RUN mkdir -p /home/coder/logs
 RUN code-server --install-extension ms-python.python
 RUN code-server --install-extension ms-azuretools.vscode-docker
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=5s --start-period=3s --retries=3 \
     CMD curl -fsSL http://localhost:8080/healthz || exit 1
 
 
