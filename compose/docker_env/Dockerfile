@@ -29,6 +29,10 @@ RUN mkdir -p /home/coder/logs
 RUN code-server --install-extension ms-python.python
 RUN code-server --install-extension ms-azuretools.vscode-docker
 
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD curl -fsSL http://localhost:8080/healthz || exit 1
+
+
 ENTRYPOINT ["bash"]
 
 CMD ["-c", "sudo rm -f /var/run/docker/containerd/containerd.pid && sudo rm -f /var/run/docker.pid && sudo dockerd > /home/coder/logs/dockerd.log 2>&1 & code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none > /home/coder/logs/code-server.log 2>&1"]
