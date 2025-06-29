@@ -35,8 +35,39 @@
     </div>
     {% endif %}
 
+    <!-- Toast container -->
+    <div id="toast" class="toast" style="display:none;">
+        <div class="alert alert-error">
+          <span id="toast-message">New message arrived.</span>
+        </div>
+    </div>
+
     {% block body_content_inner %}{% endblock %}
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+    <script>
+      document.body.addEventListener('htmx:afterOnLoad', function(evt) {
+        // Listen for HX-Trigger event for showToast
+        if (evt.detail && evt.detail.xhr) {
+          try {
+            const triggers = JSON.parse(evt.detail.xhr.getResponseHeader('HX-Trigger'));
+            if (triggers && triggers.showToast) {
+              showToast(triggers.showToast);
+            }
+          } catch (e) {}
+        }
+      });
+
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        toastMsg.textContent = message;
+        toast.style.display = 'block';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 5000);
+      }
+    </script>
+    {% endblock %}
 </body>
 {% endblock %}
 

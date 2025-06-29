@@ -6,6 +6,8 @@ from apps.env_manager.services.factory import get_env_service
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.conf import settings
+from django_ratelimit.decorators import ratelimit
+from django.http import JsonResponse
 
 env_service = get_env_service()
 
@@ -42,7 +44,13 @@ def delete_env(request, env_id):
     return render(request, 'partials/_delete_oob.html', {'environment_limit': env_limit, 'env_count': env_count})
 
 @login_required
+@ratelimit(group='env_action', key='user_or_ip', rate='1/8s', block=False)
 def stop_env(request, env_id):
+    was_limited = getattr(request, 'limited', False)
+    if was_limited:
+        response = JsonResponse({'error': 'Rate limit exceeded.'}, status=429)
+        response['HX-Trigger'] = '{"showToast": "Rate limit exceeded. Please wait before trying again."}'
+        return response
     obj = get_object_or_404(Environment, id=env_id)
     env_count = Environment.objects.filter(owner=request.user).count()
     env_limit = settings.ENV_LIMITS
@@ -52,7 +60,13 @@ def stop_env(request, env_id):
     return render(request, "partials/_row.html",{"env": obj, 'environment_limit': env_limit, 'env_count': env_count})
 
 @login_required
+@ratelimit(group='env_action', key='user_or_ip', rate='1/8s', block=False)
 def start_env(request, env_id):
+    was_limited = getattr(request, 'limited', False)
+    if was_limited:
+        response = JsonResponse({'error': 'Rate limit exceeded.'}, status=429)
+        response['HX-Trigger'] = '{"showToast": "Rate limit exceeded. Please wait before trying again."}'
+        return response
     obj = get_object_or_404(Environment, id=env_id)
     env_count = Environment.objects.filter(owner=request.user).count()
     env_limit = settings.ENV_LIMITS
