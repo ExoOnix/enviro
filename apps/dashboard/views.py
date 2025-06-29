@@ -18,7 +18,13 @@ def dashboard(request):
     return render(request, 'dashboard.html', {'environments': environments, 'environment_limit': env_limit})
 
 @login_required
+@ratelimit(group='env_action', key='user', rate='1/30s', block=False)
 def create_env(request):
+    was_limited = getattr(request, 'limited', False)
+    if was_limited:
+        response = JsonResponse({'error': 'Rate limit exceeded.'}, status=429)
+        response['HX-Trigger'] = '{"showToast": "Rate limit exceeded. Please wait before trying again."}'
+        return response
     if request.method == "POST":
         env_count = Environment.objects.filter(owner=request.user).count()
         env_limit = settings.ENV_LIMITS
@@ -44,7 +50,7 @@ def delete_env(request, env_id):
     return render(request, 'partials/_delete_oob.html', {'environment_limit': env_limit, 'env_count': env_count})
 
 @login_required
-@ratelimit(group='env_action', key='user_or_ip', rate='1/8s', block=False)
+@ratelimit(group='env_action', key='user', rate='1/30s', block=False)
 def stop_env(request, env_id):
     was_limited = getattr(request, 'limited', False)
     if was_limited:
@@ -60,7 +66,7 @@ def stop_env(request, env_id):
     return render(request, "partials/_row.html",{"env": obj, 'environment_limit': env_limit, 'env_count': env_count})
 
 @login_required
-@ratelimit(group='env_action', key='user_or_ip', rate='1/8s', block=False)
+@ratelimit(group='env_action', key='user', rate='1/30s', block=False)
 def start_env(request, env_id):
     was_limited = getattr(request, 'limited', False)
     if was_limited:
