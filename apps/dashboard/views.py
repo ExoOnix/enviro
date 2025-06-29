@@ -9,6 +9,9 @@ from django.conf import settings
 from django_ratelimit.decorators import ratelimit
 from django.http import JsonResponse
 
+# Services
+from .services import env_key
+
 env_service = get_env_service()
 
 @login_required
@@ -18,7 +21,7 @@ def dashboard(request):
     return render(request, 'dashboard.html', {'environments': environments, 'environment_limit': env_limit})
 
 @login_required
-@ratelimit(group='env_action', key='user', rate='1/30s', block=False)
+@ratelimit(key='user', rate='1/15s', block=False)
 def create_env(request):
     was_limited = getattr(request, 'limited', False)
     if was_limited:
@@ -50,7 +53,7 @@ def delete_env(request, env_id):
     return render(request, 'partials/_delete_oob.html', {'environment_limit': env_limit, 'env_count': env_count})
 
 @login_required
-@ratelimit(group='env_action', key='user', rate='1/30s', block=False)
+@ratelimit(group='env_action', key=env_key, rate='1/30s', block=False)
 def stop_env(request, env_id):
     was_limited = getattr(request, 'limited', False)
     if was_limited:
@@ -66,7 +69,7 @@ def stop_env(request, env_id):
     return render(request, "partials/_row.html",{"env": obj, 'environment_limit': env_limit, 'env_count': env_count})
 
 @login_required
-@ratelimit(group='env_action', key='user', rate='1/30s', block=False)
+@ratelimit(group='env_action', key=env_key, rate='1/30s', block=False)
 def start_env(request, env_id):
     was_limited = getattr(request, 'limited', False)
     if was_limited:
