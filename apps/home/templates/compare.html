@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block body_content_inner %}
+<h1 class="text-4xl text-center">Comparison Table</h1>
+<div class="mx-auto my-8 max-w-6xl overflow-x-auto">
+    <table class="table w-full">
+    <thead>
+        <tr>
+            <th>Topics</th>
+            <th class="text-blue-500">Enviro</th>
+            <th>Coder</th>
+            <th>Gitpod</th>
+            <th>Replit</th>
+            <th>Github Codespaces</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Open Source</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Delivery Model</td>
+            <td>Saas/Self hosted</td>
+            <td>Self Hosted only</td>
+            <td>SaaS or Self-hosted in AWS</td>
+            <td>Saas</td>
+            <td>Saas</td>
+        </tr>
+        <tr>
+            <td>Self-maintained</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Data Sovereignty</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Workspace Platform</td>
+            <td>Docker, more coming soon</td>
+            <td>Kubernetes, Docker, VMs</td>
+            <td>Kubernetes</td>
+            <td>Container</td>
+            <td>Container</td>
+        </tr>
+        <tr>
+            <td>Workspace Extensibility</td>
+            <td>Custom container images</td>
+            <td>Terraform templates and providers</td>
+            <td>YAML, similar to Docker Compose</td>
+            <td>Using NIX to get packages</td>
+            <td>Devcontainers, Dockerfiles</td>
+        </tr>
+        <tr>
+            <td>Workspace OS</td>
+            <td>Linux</td>
+            <td>Linux, Windows, macOS</td>
+            <td>Linux</td>
+            <td>NixOS</td>
+            <td>Linux</td>
+        </tr>
+        <tr>
+            <td>Workspace Tooling</td>
+            <td>Linux tooling</td>
+            <td>Workspace os tooling</td>
+            <td>Linux tooling</td>
+            <td>NixOS tooling</td>
+            <td>Linux tooling</td>
+        </tr>
+        <tr>
+            <td>Saas Deployment Available</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes - only saas</td>
+            <td>Yes - only saas</td>
+        </tr>
+        <tr>
+            <td>Docker in workspaces</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Try in seconds (laptop & cloud)</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Simplicity in use</td>
+            <td>Low</td>
+            <td>High</td>
+            <td>Medium</td>
+            <td>Very low</td>
+            <td>Low</td>
+        </tr>
+        <tr>
+            <td>Lightweight</td>
+            <td>Light</td>
+            <td>Medium</td>
+            <td>Heavy</td>
+            <td>N/A</td>
+            <td>N/A</td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+{% block scripts%}
+    <script>
+        document.documentElement.setAttribute('data-theme', "black");
+    </script>
+{% endblock %}

@@ -11,7 +11,7 @@
       Dashboard
       </a>
     {% endif %}
-    {% if request.path != '/' %}
+    {% if request.resolver_match.url_name != 'home' and request.resolver_match.url_name != 'compare' %}
       <label class="swap swap-rotate">
         <!-- this hidden checkbox controls the state -->
         <input id="toggle-switch" type="checkbox" class="theme-controller" value="dark" />
