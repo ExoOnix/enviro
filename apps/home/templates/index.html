@@ -263,14 +263,35 @@
     </div>
 </div>
 
-<footer class="footer footer-horizontal footer-center bg-base-200 text-primary-content p-10">
-    <aside>
-      <p class="font-bold text-lg">
-        OnixTech
-      </p>
-      <p>Copyright © {% now "Y" %} - All right reserved</p>
-    </aside>
+<footer class="footer sm:footer-horizontal bg-neutral text-neutral-content items-center p-4">
+  <aside class="grid-flow-col items-center">
+    <p>
+      Copyright © {% now "Y" %} OnixTech · 
+      <a href="mailto:mshapirovskyy@gmail.com" class="underline hover:text-white">mshapirovskyy@gmail.com</a>
+    </p>
+  </aside>
+  <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+    <a href="https://www.linkedin.com/in/mark-shapirovskyy-058268306" target="_blank" rel="noopener noreferrer">
+      <svg width="24" height="24" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_22_52)">
+          <path d="M727.634 0H72.3665C32.4 0 0 32.4 0 72.3665V727.631C0 767.6 32.4 800 72.3665 800H727.631C767.6 800 800 767.6 800 727.631V72.3665C800 32.4 767.6 0 727.634 0ZM247.554 690.773C247.554 702.404 238.126 711.832 226.494 711.832H136.848C125.217 711.832 115.788 702.404 115.788 690.773V314.98C115.788 303.349 125.217 293.92 136.848 293.92H226.494C238.126 293.92 247.554 303.349 247.554 314.98V690.773ZM181.671 258.496C134.637 258.496 96.5068 220.366 96.5068 173.332C96.5068 126.297 134.637 88.1675 181.671 88.1675C228.706 88.1675 266.836 126.297 266.836 173.332C266.836 220.366 228.708 258.496 181.671 258.496ZM716.042 692.469C716.042 703.162 707.372 711.832 696.679 711.832H600.482C589.788 711.832 581.118 703.162 581.118 692.469V516.201C581.118 489.906 588.831 400.974 512.4 400.974C453.114 400.974 441.089 461.845 438.674 489.162V692.469C438.674 703.162 430.006 711.832 419.311 711.832H326.272C315.579 711.832 306.909 703.162 306.909 692.469V313.284C306.909 302.591 315.579 293.92 326.272 293.92H419.311C430.004 293.92 438.674 302.591 438.674 313.284V346.069C460.658 313.079 493.328 287.615 562.888 287.615C716.924 287.615 716.042 431.523 716.042 510.593V692.469Z" fill="white"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_22_52">
+            <rect width="800" height="800" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    </a>
+    <a href="mailto:mshapirovskyy@gmail.com">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 800 800" fill="none">
+        <path d="M133.333 233.335L340 388.333C375.557 415 424.443 415 460 388.333L666.667 233.333" stroke="white" stroke-width="66.6667" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M683.111 39H116.889C72.2152 39 36 85.1147 36 142V657C36 713.885 72.2152 760 116.889 760H683.111C727.785 760 764 713.885 764 657V142C764 85.1147 727.785 39 683.111 39Z" stroke="white" stroke-width="66.6667" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </nav>
 </footer>
+
 {% endblock %}
 
 
