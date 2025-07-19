@@ -234,7 +234,7 @@ Project Link: [https://github.com/ExoOnix/enviro](https://github.com/ExoOnix/env
 [issues-shield]: https://img.shields.io/github/issues/ExoOnix/enviro.svg?style=for-the-badge
 [issues-url]: https://github.com/ExoOnix/enviro/issues
 [license-shield]: https://img.shields.io/github/license/ExoOnix/enviro.svg?style=for-the-badge
-[license-url]: https://github.com/ExoOnix/enviro/blob/master/LICENSE.txt
+[license-url]: https://github.com/ExoOnix/enviro/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: http://linkedin.com/in/mark-shapirovskyy
 [product-screenshot]: images/screenshot.png
