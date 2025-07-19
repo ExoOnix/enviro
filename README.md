@@ -234,7 +234,7 @@ Distributed under the AGPL-3.0. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Mark Shapirovskyy - [@exotic_onix](https://x.com/exotic_onix) - mshapirovskyy@gmail.com
+Mark Shapirovskyy - mshapirovskyy@gmail.com
 
 Project Link: [https://github.com/ExoOnix/enviro](https://github.com/ExoOnix/enviro)
 
