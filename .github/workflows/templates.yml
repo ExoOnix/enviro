@@ -41,4 +41,4 @@ jobs:
         with:
           context: ./env_templates/${{ matrix.env_folder }}
           push: true
-          tags: ghcr.io/${{ github.repository_owner.toLower() }}/${{ matrix.env_folder }}:latest
+          tags: ghcr.io/exoonix/${{ matrix.env_folder }}:latest
