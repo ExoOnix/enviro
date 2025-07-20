@@ -1,5 +1,7 @@
 FROM ghcr.io/exoonix/enviro_dockerenv:latest
 
+
+USER coder
 RUN python3 -m venv /home/coder/project/.venv
 
 RUN /home/coder/project/.venv/bin/pip install --upgrade pip && \
