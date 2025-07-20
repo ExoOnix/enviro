@@ -20,7 +20,7 @@ def create_container(environment_id):
         path_prefix = f"/environment/{env_id}"
 
         run_kwargs = dict(
-            image=settings.ENV_IMAGE,
+            image=environment.image,
             labels={
                 "traefik.enable": "true",
                 f"traefik.http.routers.{router_name}.rule": f"PathPrefix(`{path_prefix}`)",
@@ -38,7 +38,7 @@ def create_container(environment_id):
             detach=True
         )
         # Only set command and entrypoint if using codercom/code-server:latest
-        if settings.ENV_IMAGE == "codercom/code-server:latest":
+        if environment.image == "codercom/code-server:latest":
             run_kwargs["command"] = [
                 "-c",
                 "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"

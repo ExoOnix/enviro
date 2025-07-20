@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Environment
+from .models import Environment, EnvironmentTemplate
 
 @admin.register(Environment)
 class EnvironmentAdmin(admin.ModelAdmin):
@@ -10,4 +10,5 @@ class EnvironmentAdmin(admin.ModelAdmin):
         return False
 
     def has_delete_permission(self, request, obj=None):
-        return False
+        return True
+admin.site.register(EnvironmentTemplate)

@@ -1,18 +1,18 @@
 from ..base import EnvService
 from django.db import transaction
-import docker
+from django.conf import settings
 
 # Models
 from ...models import Environment
 from apps.env_manager.tasks import create_container, delete_container, stop_container, start_container
 
 class DockerService(EnvService):
-    def create_environment(self, name: str, owner):
+    def create_environment(self, name: str, owner, image=settings.ENV_IMAGE):
         """Creates and returns the Environment DB object before starting the container."""
         environment = Environment.objects.create(
             owner=owner,
             name=name,
-            image="codercom/code-server:latest",
+            image=image,
             status="running",
         )
 
