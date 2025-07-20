@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        env_folder: ${{ fromJson(format('["{}", "{}"]', join(steps.find_envs.outputs.env_folders, '","'))) }}
+        env_folder: [python-flask,]
 
     steps:
       - name: Checkout code
