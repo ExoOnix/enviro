@@ -1,7 +1,7 @@
 FROM ghcr.io/exoonix/enviro_dockerenv:latest
 
-
 USER coder
+
 RUN python3 -m venv /home/coder/project/.venv
 
 RUN /home/coder/project/.venv/bin/pip install --upgrade pip && \
@@ -10,4 +10,4 @@ RUN /home/coder/project/.venv/bin/pip install --upgrade pip && \
 ENV VIRTUAL_ENV=/home/coder/project/.venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-COPY ./main.py /home/coder/project/main.py
+COPY --chown=coder:coder ./main.py /home/coder/project/main.py
