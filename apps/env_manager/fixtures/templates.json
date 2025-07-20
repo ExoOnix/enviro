@@ -1,0 +1,11 @@
+[
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 35,
+  "fields": {
+    "name": "Flask",
+    "image": "ghcr.io/exoonix/enviro_python-flask:latest",
+    "description": "A cloud development environment preconfigured for building and running Flask web applications."
+  }
+}
+]
