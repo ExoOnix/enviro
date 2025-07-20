@@ -168,7 +168,7 @@ After authenticating, click create project and start programming!
 
 <!-- ROADMAP -->
 ## Roadmap
-
+- [x] Environment Templates
 - [ ] Kubernetes support
 
 
