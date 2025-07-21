@@ -7,5 +7,14 @@
     "image": "ghcr.io/exoonix/enviro_python-flask:latest",
     "description": "A cloud development environment preconfigured for building and running Flask web applications."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 36,
+  "fields": {
+    "name": "C",
+    "image": "ghcr.io/exoonix/enviro_c:latest",
+    "description": "A cloud development environment preconfigured for C programming with Make and the Clang compiler, optionally switchable to GCC."
+  }
 }
 ]

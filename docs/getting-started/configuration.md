@@ -84,5 +84,12 @@ This document explains the environment variables used to configure your Enviro d
 
 ---
 
+## Exporting Environment Templates to a Fixture
+
+To export fixtures run:
+```sh
+./cli poetry run python manage.py dumpdata env_manager.EnvironmentTemplate --indent 2 > apps/env_manager/fixtures/templates.json
+```
+
 **Note:**  
 After editing your `.env` file, restart your application for changes to take effect.
