@@ -1,6 +1,16 @@
+{% load static %}
+
 <div class="navbar bg-base-100 shadow-sm">
   <div class="flex-1">
-    <a href="/" class="btn btn-ghost text-xl">Onix Enviro</a>
+    <a href="/" class="btn btn-ghost text-xl" x-data="{ theme: document.documentElement.getAttribute('data-theme') }" x-init="
+      const observer = new MutationObserver(() => {
+        theme = document.documentElement.getAttribute('data-theme');
+      });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    ">
+      <img x-show="theme === 'light'" src="{% static 'img/logo_light.svg' %}" alt="Onix Logo Dark" class="h-9 w-auto">
+      <img x-show="theme === 'black'" src="{% static 'img/logo_dark.svg' %}" alt="Onix Logo Light" class="h-9 w-auto">
+    </a>
   </div>
   <div class="flex-none">
     {% if user.is_authenticated %}
