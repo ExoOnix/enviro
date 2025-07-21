@@ -2,6 +2,6 @@
     "code-runner.executorMap": {
         "c": "cd /home/coder/project && make run #"
     },
-    "code-runner.clearPreviousOutput": true,
-    "code-runner.defaultLanguage": "c"
+    "code-runner.defaultLanguage": "c",
+    "code-runner.runInTerminal": true
 }
