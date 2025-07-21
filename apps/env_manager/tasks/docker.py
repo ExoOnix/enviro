@@ -41,7 +41,7 @@ def create_container(environment_id):
         if environment.image == "codercom/code-server:latest":
             run_kwargs["command"] = [
                 "-c",
-                "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"
+                f"mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none --abs-proxy-base-path={path_prefix}"
             ]
             run_kwargs["entrypoint"] = "bash"
         if settings.DOCKER_RUNTIME != "default":
