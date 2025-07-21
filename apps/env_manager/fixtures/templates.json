@@ -16,5 +16,14 @@
     "image": "ghcr.io/exoonix/enviro_c:latest",
     "description": "A cloud development environment preconfigured for C programming with Make and the Clang compiler, optionally switchable to GCC."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 37,
+  "fields": {
+    "name": "ExpressJS",
+    "image": "ghcr.io/exoonix/enviro_javascript-express:latest",
+    "description": "A cloud development environment preconfigured for building and running Express.js web applications."
+  }
 }
 ]
