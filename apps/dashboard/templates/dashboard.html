@@ -18,9 +18,17 @@
 </div>
 
 <!-- Modal -->
-<dialog id="create_modal" class="modal" x-data="{ step: 'select', selectedTemplate: '', selectedTemplateName: '', envName: '' }" @reset-step.window="step = 'select'; envName = ''; selectedTemplate = '';">
+<dialog id="create_modal" class="modal" x-data="{ step: 'select', selectedTemplate: '', selectedTemplateName: '', envName: '', search: '' }" @reset-step.window="step = 'select'; envName = ''; selectedTemplate = ''; search = ''">
   <div class="modal-box w-11/12 max-w-5xl max-h-[80vh] overflow-auto">
-    <h3 class="text-xl font-bold mb-4">Create</h3>
+  <div class="flex justify-between items-center mb-4">
+    <h3 class="text-xl font-bold">Create</h3>
+    <input
+      type="text"
+      placeholder="Search templates..."
+      class="input input-bordered w-full max-w-xs"
+      x-model="search"
+    />
+  </div>
 
     <form
       hx-post="{% url 'create_env' %}"
@@ -30,27 +38,31 @@
         create_modal.close();
         const resetEvent = new CustomEvent('reset-step', { bubbles: true });
         create_modal.dispatchEvent(resetEvent);
-        envName = ''; // Clear the environment name input
-        selectedTemplate = ''; // Clear the selected template
+        envName = '';
+        selectedTemplate = '';
         selectedTemplateName = '';
       }"
-      >
+    >
+
       <!-- Step 1: Template Selection -->
       <div x-show="step === 'select'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div class="card bg-base-200 p-4 cursor-pointer hover:bg-base-300 transition"
-             @click="selectedTemplate = 'Blank'; selectedTemplateName='Blank';step = 'name'">
-          <h2 class="font-semibold text-lg">Blank</h2>
-          <p class="text-sm text-gray-500">A blank template to get you started.</p>
-        </div>
+        <template x-if="'blank'.includes(search.toLowerCase()) || search === ''">
+          <div class="card bg-base-200 p-4 cursor-pointer hover:bg-base-300 transition"
+               @click="selectedTemplate = 'Blank'; selectedTemplateName='Blank'; step = 'name'">
+            <h2 class="font-semibold text-lg">Blank</h2>
+            <p class="text-sm text-gray-500">A blank template to get you started.</p>
+          </div>
+        </template>
 
         {% for template in env_tempates %}
-          <div class="card bg-base-200 p-4 cursor-pointer hover:bg-base-300 transition"
-              @click="selectedTemplate = '{{ template.id }}'; selectedTemplateName = '{{ template.name }}'; step = 'name'">
-            <h2 class="font-semibold text-lg">{{ template.name }}</h2>
-            <p class="text-sm text-gray-500">{{ template.description }}</p>
-          </div>
+          <template x-if="'{{ template.name|lower }}'.includes(search.toLowerCase()) || '{{ template.description|lower }}'.includes(search.toLowerCase()) || search === ''">
+            <div class="card bg-base-200 p-4 cursor-pointer hover:bg-base-300 transition"
+                 @click="selectedTemplate = '{{ template.id }}'; selectedTemplateName = '{{ template.name }}'; step = 'name'">
+              <h2 class="font-semibold text-lg">{{ template.name }}</h2>
+              <p class="text-sm text-gray-500">{{ template.description }}</p>
+            </div>
+          </template>
         {% endfor %}
-        <!-- Add more templates here -->
       </div>
 
       <!-- Step 2: Name the Environment -->
@@ -77,6 +89,7 @@
     <button>close</button>
   </form>
 </dialog>
+
 
 
 
