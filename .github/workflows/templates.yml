@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        env_folder: [python-flask,]
+        env_folder: [python-flask, c]
 
     steps:
       - name: Checkout code
