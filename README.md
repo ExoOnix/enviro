@@ -66,12 +66,13 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Onix Enviro is a cloud development platform for instant, full-featured dev environments in your browser. Eliminate local setup, run Docker, forward ports, and more.
+Onix Enviro is a cloud development platform for instant, full-featured dev environments in your browser. Eliminate local setup, run Docker, forward ports, use templates, and more.
 
 - No local setup needed
 - Run VS Code in browser
 - Remote Docker & environment support
 - Full stack flexibility
+- Environment starter templates
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

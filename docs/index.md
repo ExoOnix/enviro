@@ -15,6 +15,7 @@ Onix Enviro is a modern **cloud development platform** designed to eliminate the
 - **Freedom of Stack**: Run any language, framework, or tooling you want, including **Docker**, **databases**, and custom scripts.  
 - **Effortless Onboarding**: New developers? Just two clicks and they’re coding.  
 - **Familiar Editor**: Use full **Visual Studio Code** in your browser — no compromises.
+- **Templates**: Jumpstart your project using ready-to-go environment templates for popular languages and frameworks.
 
 
 ## Key Features
