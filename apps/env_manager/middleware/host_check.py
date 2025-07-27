@@ -11,6 +11,11 @@ class HostnameMiddleware(MiddlewareMixin):
         current_host = request.get_host().split(':')[0]  # Remove port if present
         expected_host = settings.HOSTNAME
 
+        # Skip auth request paths
+        if resolve(request.path_info).url_name == "auth_request":
+            return self.get_response(request)
+
+
         # Skip if it's already the waiting room path (avoid infinite loop)
         if resolve(request.path_info).url_name == "waiting_room":
             return None
