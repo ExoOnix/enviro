@@ -113,6 +113,9 @@ MIDDLEWARE = [
     
     "django_htmx.middleware.HtmxMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    
+    # Loading middleware
+    "apps.env_manager.middleware.host_check.HostnameMiddleware",
 ]
 
 ROOT_URLCONF = 'core.urls'
