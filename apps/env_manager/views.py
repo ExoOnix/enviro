@@ -13,15 +13,3 @@ def waiting_room(request, number: int):
         return HttpResponse("Environment is stopped")
     else:
         return render(request, 'waiting_room.html', {'environment': env})
-
-def loading_room(request):
-    host = request.get_host().split(':')[0]  # Remove port if present
-    hostname = settings.HOSTNAME
-
-    if host.endswith(hostname):
-        subdomain_part = host[:-len(hostname)].rstrip('.')
-        subdomain_levels = subdomain_part.split('.')
-        if subdomain_levels and subdomain_levels[-1].startswith('env-'):
-            return render(request, 'waiting_room.html')
-
-    return home_views.home(request)
