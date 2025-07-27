@@ -237,3 +237,7 @@ DOCKER_RUNTIME = os.environ.get("DOCKER_RUNTIME", "default")
 ENV_IMAGE = os.environ.get("ENV_IMAGE", "codercom/code-server:latest")
 
 ENV_LIMITS = int(os.environ.get("ENV_LIMITS", "0"))
+
+# Reverse proxy routing
+HOSTNAME = os.environ.get("HOSTNAME", "onixtech.org")
+ROUTING_TYPE = os.environ.get("ROUTING_TYPE", "subpath")
