@@ -28,7 +28,7 @@
 },
 {
   "model": "env_manager.environmenttemplate",
-  "pk": 37,
+  "pk": 38,
   "fields": {
     "name": "RStudio",
     "image": "ghcr.io/exoonix/enviro_rstudio:latest",
