@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Environment
 from django.http import HttpResponseNotFound, HttpResponse
+from apps.home import views as home_views
+from django.conf import settings
+
 
 def waiting_room(request, number: int):
     env = Environment.objects.filter(pk=number).first()

@@ -17,11 +17,11 @@ def create_container(environment_id):
         service_name = f"code-server-{env_id}"
         middleware_stripprefix = f"code-server-stripprefix-{env_id}"
         middleware_forwardauth = f"code-server-forwardauth-{env_id}"
-        path_prefix = f"/environment/{env_id}"
 
-        run_kwargs = dict(
-            image=environment.image,
-            labels={
+        routing_type = settings.ROUTING_TYPE
+        if routing_type == "subpath":
+            path_prefix = f"/environment/{env_id}"
+            labels = {
                 "traefik.enable": "true",
                 f"traefik.http.routers.{router_name}.rule": f"PathPrefix(`{path_prefix}`)",
                 f"traefik.http.routers.{router_name}.entrypoints": "web",
@@ -32,7 +32,23 @@ def create_container(environment_id):
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User"
-            },
+            }
+        elif routing_type == "subdomain":
+            subdomain = f"env-{env_id}.{settings.HOSTNAME}"
+            labels = {
+                "traefik.enable": "true",
+                f"traefik.http.routers.{router_name}.rule": f"Host(`{subdomain}`)",
+                f"traefik.http.routers.{router_name}.entrypoints": "web",
+                f"traefik.http.routers.{router_name}.service": service_name,
+                f"traefik.http.services.{service_name}.loadbalancer.server.port": "23000",
+                f"traefik.http.routers.{router_name}.middlewares": f"{middleware_forwardauth}",
+                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
+                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
+                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User"
+            }
+        run_kwargs = dict(
+            image=environment.image,
+            labels=labels,
             network="onixenvnet",
             restart_policy={"Name": "unless-stopped"},
             detach=True

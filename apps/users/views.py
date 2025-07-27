@@ -1,15 +1,20 @@
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import re
-
+from django.conf import settings
 from apps.env_manager.models import Environment
 
 # Create your views here.
 def auth_request(request):
     if not request.user.is_authenticated:
         return HttpResponse("Forbidden: You are not authenticated", status=401)
-    forwarded_uri = request.META.get('HTTP_X_FORWARDED_URI')
-    match = re.search(r'/environment/(\d+)/', forwarded_uri)
+    if settings.ROUTING_TYPE == 'subpath':
+        forwarded_uri = request.META.get('HTTP_X_FORWARDED_URI')
+        match = re.search(r'/environment/(\d+)/', forwarded_uri)
+    elif settings.ROUTING_TYPE == 'subdomain':
+        forwarded_host = request.META.get('HTTP_X_FORWARDED_HOST')
+        match = re.search(r'env-(\d+)\.', forwarded_host)
+        
     if match:
         env_id = match.group(1)
     else:
