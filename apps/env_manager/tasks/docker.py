@@ -26,7 +26,7 @@ def create_container(environment_id):
                 f"traefik.http.routers.{router_name}.rule": f"PathPrefix(`{path_prefix}`)",
                 f"traefik.http.routers.{router_name}.entrypoints": "web",
                 f"traefik.http.routers.{router_name}.service": service_name,
-                f"traefik.http.services.{service_name}.loadbalancer.server.port": "8080",
+                f"traefik.http.services.{service_name}.loadbalancer.server.port": "23000",
                 f"traefik.http.middlewares.{middleware_stripprefix}.stripprefix.prefixes": path_prefix,
                 f"traefik.http.routers.{router_name}.middlewares": f"{middleware_forwardauth},{middleware_stripprefix}",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
@@ -41,7 +41,7 @@ def create_container(environment_id):
         if environment.image == "codercom/code-server:latest":
             run_kwargs["command"] = [
                 "-c",
-                "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:8080 --disable-getting-started-override=true --auth=none"
+                "mkdir -p /home/coder/project && code-server /home/coder/project --bind-addr 0.0.0.0:23000 --disable-getting-started-override=true --auth=none"
             ]
             run_kwargs["entrypoint"] = "bash"
         if settings.DOCKER_RUNTIME != "default":
