@@ -25,5 +25,14 @@
     "image": "ghcr.io/exoonix/enviro_javascript-express:latest",
     "description": "A cloud development environment preconfigured for building and running Express.js web applications."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 37,
+  "fields": {
+    "name": "RStudio",
+    "image": "ghcr.io/exoonix/enviro_rstudio:latest",
+    "description": "A cloud development environment preconfigured for building and running R applications using the RStudio IDE and including Tidyverse."
+  }
 }
 ]
