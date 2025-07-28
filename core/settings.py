@@ -29,6 +29,22 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS","127.0.0.1").split(",")
 CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", ["https://onixtech.org"])
 
+# ENVS
+ENV_PROVIDER = os.environ.get("ENV_PROVIDER", "docker")
+DOCKER_RUNTIME = os.environ.get("DOCKER_RUNTIME", "default")
+
+ENV_IMAGE = os.environ.get("ENV_IMAGE", "codercom/code-server:latest")
+
+ENV_LIMITS = int(os.environ.get("ENV_LIMITS", "0"))
+
+# Reverse proxy routing
+HOSTNAME = os.environ.get("HOSTNAME", "onixtech.org")
+ROUTING_TYPE = os.environ.get("ROUTING_TYPE", "subpath")
+
+if ROUTING_TYPE == "subdomain":
+    SESSION_COOKIE_DOMAIN = f".{HOSTNAME}"
+    CSRF_COOKIE_DOMAIN = f".{HOSTNAME}"
+
 # Auth
 AUTH_USER_MODEL = "users.CustomUser"
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
@@ -113,10 +129,11 @@ MIDDLEWARE = [
     
     "django_htmx.middleware.HtmxMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    
-    # Loading middleware
-    "apps.env_manager.middleware.host_check.HostnameMiddleware",
 ]
+
+# Loading middleware
+if ROUTING_TYPE == "subdomain":
+    MIDDLEWARE.append("apps.env_manager.middleware.host_check.HostnameMiddleware")
 
 ROOT_URLCONF = 'core.urls'
 
@@ -231,16 +248,3 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", "redis://127.0.0.1:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", "redis://127.0.0.1:6379/0")
-
-
-# ENVS
-ENV_PROVIDER = os.environ.get("ENV_PROVIDER", "docker")
-DOCKER_RUNTIME = os.environ.get("DOCKER_RUNTIME", "default")
-
-ENV_IMAGE = os.environ.get("ENV_IMAGE", "codercom/code-server:latest")
-
-ENV_LIMITS = int(os.environ.get("ENV_LIMITS", "0"))
-
-# Reverse proxy routing
-HOSTNAME = os.environ.get("HOSTNAME", "onixtech.org")
-ROUTING_TYPE = os.environ.get("ROUTING_TYPE", "subpath")
