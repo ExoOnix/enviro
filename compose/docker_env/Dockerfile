@@ -35,4 +35,6 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=3s --retries=3 \
 
 ENTRYPOINT ["bash"]
 
+EXPOSE 23000
+
 CMD ["-c", "sudo rm -f /var/run/docker/containerd/containerd.pid && sudo rm -f /var/run/docker.pid && sudo dockerd > /home/coder/logs/dockerd.log 2>&1 & code-server /home/coder/project --bind-addr 0.0.0.0:23000 --disable-getting-started-override=true --auth=none > /home/coder/logs/code-server.log 2>&1"]
