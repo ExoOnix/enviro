@@ -178,6 +178,7 @@ After authenticating, click create project and start programming!
 <!-- ROADMAP -->
 ## Rough Roadmap
 - [x] Environment Templates
+- [x] Subdomain editors
 - [ ] Subdomain port forwarding
 - [ ] Kubernetes support
 - [ ] Integrate custom editor [OnixIDE](https://github.com/ExoOnix/OnixIDE)
