@@ -32,7 +32,9 @@
   </p>
 </div>
 
-
+<center>
+  <a href="https://www.producthunt.com/products/onix-enviro?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-onix&#0045;enviro" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=999526&theme=neutral&t=1753905813790" alt="Onix&#0032;Enviro - Enviro&#0032;speeds&#0032;up&#0032;dev&#0032;with&#0032;ready&#0045;to&#0045;use&#0032;cloud&#0032;IDEs | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+</center>
 
 <!-- TABLE OF CONTENTS -->
 <details>
