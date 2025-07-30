@@ -34,5 +34,14 @@
     "image": "ghcr.io/exoonix/enviro_rstudio:latest",
     "description": "A cloud development environment preconfigured for building and running R applications using the RStudio IDE and including Tidyverse."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 39,
+  "fields": {
+    "name": "JupyterLab",
+    "image": "ghcr.io/exoonix/enviro_jupyter-lab:latest",
+    "description": "A development environment with the JupyterLab interface, preconfigured for Python development with support for Jupyter Notebooks."
+  }
 }
 ]
