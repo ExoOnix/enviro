@@ -13,7 +13,7 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     networks:
-      - onixenvnet
+      - onixnet
   db:
     image: postgres:17
     environment:
@@ -25,7 +25,7 @@ services:
     env_file:
       - .env
     networks:
-      - onixenvnet
+      - onixnet
 
   django-web:
     build:
@@ -56,11 +56,11 @@ services:
     volumes:
       - .:/app
     networks:
-      - onixenvnet
+      - onixnet
   redis:
     image: redis:7-alpine
     networks:
-      - onixenvnet
+      - onixnet
   celery_worker:
     build:
       context: .
@@ -75,7 +75,7 @@ services:
       - redis
       - db
     networks:
-      - onixenvnet
+      - onixnet
   celery_beat:
     build:
       context: .
@@ -89,7 +89,7 @@ services:
       - redis
       - db
     networks:
-      - onixenvnet
+      - onixnet
   flower:
     build:
       context: .
@@ -105,10 +105,10 @@ services:
       - redis
       - db
     networks:
-      - onixenvnet
+      - onixnet
 volumes:
   postgres_data:
 
 networks:
-  onixenvnet:
-    external: true
+  onixnet:
+    driver: bridge
