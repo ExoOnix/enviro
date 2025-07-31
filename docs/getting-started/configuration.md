@@ -58,6 +58,14 @@ This document explains the environment variables used to configure your Enviro d
 - **ENV_LIMITS**  
   Maximum number of environments a user can create. Set to `0` to disable the limit.
 
+## Reverse Proxy Config
+
+- **HOSTNAME**
+  Set to the hostname of your application, for example: `onixtech.org`, only needed if using subdomain routing in `ROUTING_TYPE`.
+
+- **ROUTING_TYPE**
+  Set routing type. if using subpath, environments will be placed on /environments/<id>. If using subdomain, environments will be placed on env-<id>.example.com. You need `HOSTNAME` to be set. Options: `subpath`, `subdomain`.
+
 ## Email Settings
 
 - **EMAIL_BACKEND** Django email backend.  

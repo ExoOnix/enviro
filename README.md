@@ -122,15 +122,8 @@ cp .env.example .env
 
 Set values for database, Django secret key, allowed hosts, etc.
 
-#### 3. Set Up Docker Network
 
-Create the required Docker network if it doesn't exist:
-
-```sh
-docker network create onixenvnet
-```
-
-#### 4. Start the Services
+#### 3. Start the Services
 
 Run the following command to start all services:
 
@@ -138,7 +131,7 @@ Run the following command to start all services:
 docker compose -f docker-compose.production.yaml up --build -d
 ```
 
-#### 5. Apply Database Migrations
+#### 4. Apply Database Migrations
 
 After the containers are running, apply Django migrations:
 
@@ -146,7 +139,7 @@ After the containers are running, apply Django migrations:
 docker compose -f docker-compose.production.yaml exec django-web poetry run python manage.py migrate
 ```
 
-#### 6. Setup environment templates (Optional)
+#### 5. Setup environment templates (Optional)
 
 To populate the database with the official environment templates, run:
 
@@ -154,7 +147,7 @@ To populate the database with the official environment templates, run:
 docker compose -f docker-compose.production.yaml exec django-web poetry run python manage.py loaddata apps/env_manager/fixtures/templates.json
 ```
 
-#### 7. Create a Superuser (Optional)
+#### 6. Create a Superuser (Optional)
 
 To access the Django admin, create a superuser:
 
@@ -162,7 +155,7 @@ To access the Django admin, create a superuser:
 docker compose -f docker-compose.production.yaml exec django-web poetry run python manage.py createsuperuser
 ```
 
-#### 8. Access the Platform
+#### 7. Access the Platform
 
 - Visit `http://localhost:8081` (or your server's IP/domain) in your browser. (Port can be changed in the docker compose)
 - Log in or sign up to start using Onix Enviro.
