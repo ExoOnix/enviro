@@ -1,27 +1,33 @@
 {% load static %}
 
 <div class="navbar bg-base-100 shadow-sm">
-  <div class="flex-1" 
-      x-data="{
-        theme: document.documentElement.getAttribute('data-theme'),
-        systemTheme() {
-          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'black' : 'light';
-        },
-        effectiveTheme() {
-          return this.theme === 'auto' ? this.systemTheme() : this.theme;
-        }
-      }" 
-      x-init="
-        const observer = new MutationObserver(() => {
-          theme = document.documentElement.getAttribute('data-theme');
-        });
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-      ">
-    <a href="/" class="btn btn-ghost text-xl">
+  <div class="flex-1 flex items-center space-x-2"
+    x-data="{
+      theme: document.documentElement.getAttribute('data-theme'),
+      systemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'black' : 'light';
+      },
+      effectiveTheme() {
+        return this.theme === 'auto' ? this.systemTheme() : this.theme;
+      }
+    }"
+    x-init="
+      const observer = new MutationObserver(() => {
+        theme = document.documentElement.getAttribute('data-theme');
+      });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    "
+    >
+    <a href="/" class="btn btn-ghost text-xl flex items-center px-2 py-1">
       <img x-show="effectiveTheme() === 'light'" src="{% static 'img/logo_light.svg' %}" alt="Onix Logo Light" class="h-9 w-auto" />
       <img x-show="effectiveTheme() === 'black'" src="{% static 'img/logo_dark.svg' %}" alt="Onix Logo Dark" class="h-9 w-auto" />
     </a>
+    <a href="/blog" class="btn btn-ghost text-lg px-2 py-1">
+      Blog
+    </a>
   </div>
+
+
   <div class="flex-none">
     {% if user.is_authenticated %}
       <a href="{% url 'dashboard' %}" role="button" class="btn btn-sm btn-outline rounded-full">
@@ -39,7 +45,7 @@
       </svg>
     </a>
     {% endif %}
-    {% if request.resolver_match.url_name != 'home' and request.resolver_match.url_name != 'compare' %}
+    {% if request.resolver_match.url_name != 'home' and request.resolver_match.url_name != 'compare' and '/blog/' not in request.path %}
       <label class="swap swap-rotate">
         <!-- this hidden checkbox controls the state -->
         <input id="toggle-switch" type="checkbox" class="theme-controller" value="dark" />

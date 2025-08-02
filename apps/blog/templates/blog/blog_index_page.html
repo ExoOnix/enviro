@@ -1,0 +1,52 @@
+{% extends "blog_base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block body_content_inner %}
+<div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 my-12">
+    <h1 class="text-4xl font-bold mb-3">{{ page.title }}</h1>
+
+    {% if page.intro %}
+    <div class="prose lg:prose-xl max-w-none text-gray-500 mb-8">
+        {{ page.intro|richtext }}
+    </div>
+    {% endif %}
+
+    {% if blogpages %}
+    <div class="grid md:grid-cols-2 gap-6">
+        {% for post in blogpages %}
+        <div class="card bg-base-200 shadow-md">
+            {% if post.header_image %}
+            <figure>
+                {% image post.header_image fill-640x360 as img %}
+                <img src="{{ img.url }}" alt="{{ img.alt }}" class="w-full object-cover h-48">
+            </figure>
+            {% endif %}
+            <div class="card-body">
+                <h2 class="card-title text-xl">
+                    <a href="{{ post.url }}" class="hover:underline">{{ post.title }}</a>
+                </h2>
+                <p class="text-sm text-gray-500">
+                    {% if post.author %}By {{ post.author.get_full_name }} &bull; {% endif %}{{ post.date }}
+                </p>
+                <p class="line-clamp-3 text-gray-400 text-sm">{{ post.intro }}</p>
+                <div class="card-actions mt-4">
+                    <a href="{{ post.url }}" class="btn btn-sm btn-outline">Read more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-gray-500">No posts yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.documentElement.setAttribute('data-theme', "black");
+</script>
+{% endblock %}

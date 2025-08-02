@@ -1,0 +1,31 @@
+{% extends "blog_base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block body_content_inner %}
+<div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 my-12">
+    <a href="{{ page.get_parent.url }}" class="btn btn-sm btn-outline mb-6">
+        ← Back to Blog
+    </a>
+    <h1 class="text-4xl font-bold mb-3">{{ page.title }}</h1>
+    
+    <p class="text-gray-500 text-sm mb-8">{% if page.author %}By {{ page.author.get_full_name  }} &bull; {% endif %}{{ page.date }}</p>
+    {% if page.header_image %}
+        <div class="mb-8">
+            {% image page.header_image width-1200 %}
+        </div>
+    {% endif %}
+
+    <div class="prose lg:prose-xl max-w-none">
+        {{ page.body|richtext }}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts%}
+    <script>
+        document.documentElement.setAttribute('data-theme', "black");
+    </script>
+{% endblock %}
