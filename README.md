@@ -174,10 +174,11 @@ After authenticating, click create project and start programming!
 ## Rough Roadmap
 - [x] Environment Templates
 - [x] Subdomain editors
+- [ ] More lightweight self hosting version of this app
 - [ ] Subdomain port forwarding
 - [ ] Kubernetes support
+- [ ] AI features
 - [ ] Integrate custom editor [OnixIDE](https://github.com/ExoOnix/OnixIDE)
-
 
 See the [open issues](https://github.com/ExoOnix/enviro/issues) for a full list of proposed features (and known issues).
 
