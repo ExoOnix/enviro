@@ -11,13 +11,15 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /home/coder/project
+
 
 USER coder
 
-RUN npm init -y
+RUN npx -y express-generator --view pug
 
-RUN npm install express
+RUN npm install
 
-COPY --chown=coder:coder ./index.js /home/coder/project/index.js
 
+COPY --chown=coder:coder ./vscode/settings.json /home/coder/.local/share/code-server/User/settings.json
 RUN code-server --install-extension formulahendry.code-runner
