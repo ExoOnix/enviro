@@ -57,6 +57,7 @@ services:
       - onixnet
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - media_data:/app/media
   redis:
     image: redis:7-alpine
     networks:
@@ -106,6 +107,7 @@ services:
 volumes:
   postgres_data:
   production_redis_data:
+  media_data:
 
 networks:
   onixnet:
