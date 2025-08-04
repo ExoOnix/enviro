@@ -1,7 +1,7 @@
 {
     "code-runner.executorMap": {
-        "js": "cd /home/coder/project && npm run start"
+        "javascript": "cd /home/coder/project && npm run start"
     },
-    "code-runner.defaultLanguage": "js",
+    "code-runner.defaultLanguage": "javascript",
     "code-runner.runInTerminal": true
 }
