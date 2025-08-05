@@ -40,6 +40,7 @@
 <div class="flex justify-center mb-24">
   <div class="w-full px-4 sm:px-8 md:px-0 md:w-5/6 lg:w-3/4 xl:w-3/5">
     <div x-data="{ playing: false }" class="relative w-full">
+      
       <!-- Product Image with Play Button -->
       <div x-show="!playing" class="relative">
         <img src="{% static 'home/img/product.png' %}" alt="Product" class="w-full rounded-lg shadow-lg">
@@ -55,19 +56,16 @@
         </button>
       </div>
 
-      <!-- Video Player -->
-      <div x-show="playing" @click.away="playing = false" class="relative">
-        <video
-          class="w-full rounded-lg shadow-lg"
-          autoplay
-          muted
-          loop
-          playsinline
-          @ended="playing = false"
-        >
-          <source src="{% static 'home/vid/video.mp4' %}" type="video/mp4">
-        </video>
-      </div>
+      <!-- YouTube Player -->
+    <div x-show="playing" class="relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe
+        class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+        src="https://www.youtube.com/embed/gCz3F-clrEQ?autoplay=1&modestbranding=1&rel=0&showinfo=0"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+    ></iframe>
+    </div>
     </div>
   </div>
 </div>
