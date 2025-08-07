@@ -16,6 +16,9 @@ This document explains the environment variables used to configure your Enviro d
 - **DJANGO_ALLOWED_HOSTS**  
   Comma-separated list of hostnames/domain names that this Django site can serve.
 
+- **DJANGO_CSRF_TRUSTED_ORIGINS**
+  Comma-seperated list of trusted csrf origins that Django can trust. Default `http://localhost:8081`.
+
 ## Database Settings
 
 - **DATABASE_ENGINE**  
