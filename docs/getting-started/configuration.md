@@ -104,3 +104,91 @@ To export fixtures run:
 
 **Note:**  
 After editing your `.env` file, restart your application for changes to take effect.
+
+# Example Subpath Production Env
+
+```
+DJANGO_SECRET_KEY=your_secret_key
+DEBUG=False
+DJANGO_LOGLEVEL=info
+DJANGO_ALLOWED_HOSTS=localhost,django-docker,onixtech.org
+DJANGO_CSRF_TRUSTED_ORIGINS=https://onixtech.org
+DATABASE_ENGINE=postgresql_psycopg2
+DATABASE_NAME=dockerdjango
+DATABASE_USERNAME=dbuser
+DATABASE_PASSWORD=dbpassword
+DATABASE_HOST=db
+DATABASE_PORT=5432
+
+# Celery
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+# Env preferences
+ENV_PROVIDER = docker
+DOCKER_RUNTIME = default
+ENV_IMAGE = ghcr.io/exoonix/enviro_dockerenv:latest
+
+ENV_LIMITS = 6
+
+
+# Reverse proxy routing
+HOSTNAME = onixtech.org # Only used if ROUTING_TYPE is subdomain
+ROUTING_TYPE = subpath
+
+# Email
+EMAIL_BACKEND = django.core.mail.backends.console.EmailBackend # For smtp use django.core.mail.backends.smtp.EmailBackend
+
+
+EMAIL_HOST = ''
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+```
+
+# Example Subdomain Production Env
+
+```
+DJANGO_SECRET_KEY=your_secret_key
+DEBUG=False
+DJANGO_LOGLEVEL=info
+DJANGO_ALLOWED_HOSTS=localhost,django-docker,onixtech.org,.onixtech.org
+DJANGO_CSRF_TRUSTED_ORIGINS=https://onixtech.org
+DATABASE_ENGINE=postgresql_psycopg2
+DATABASE_NAME=dockerdjango
+DATABASE_USERNAME=dbuser
+DATABASE_PASSWORD=dbpassword
+DATABASE_HOST=db
+DATABASE_PORT=5432
+
+# Celery
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+# Env preferences
+ENV_PROVIDER = docker
+DOCKER_RUNTIME = default
+ENV_IMAGE = ghcr.io/exoonix/enviro_dockerenv:latest
+
+ENV_LIMITS = 6
+
+
+# Reverse proxy routing
+HOSTNAME = onixtech.org # Only used if ROUTING_TYPE is subdomain
+ROUTING_TYPE = subdomain
+
+# Email
+EMAIL_BACKEND = django.core.mail.backends.console.EmailBackend # For smtp use django.core.mail.backends.smtp.EmailBackend
+
+
+EMAIL_HOST = ''
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+```
