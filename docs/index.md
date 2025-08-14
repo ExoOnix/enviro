@@ -44,3 +44,9 @@ Easily expose your development environments to the internet with secure port for
 1. **Sign Up / Log In**: Create your Onix account to get started.  
 2. **Create an Environment**: Launch a full dev environment from your dashboard.  
 3. **Start Coding**: Use browser-based **VS Code** and install tools as needed.  
+
+## Hardware requirements
+
+Must have enough storage and performance to run Docker.
+
+Recommended atleast 2GB of RAM. And 40GB of free storage.
