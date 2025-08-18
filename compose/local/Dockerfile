@@ -1,4 +1,4 @@
-FROM python:3.13
+FROM python:3.13-bookworm
 
 # Install system packages
 RUN apt-get update && apt-get install -y \
@@ -40,12 +40,10 @@ RUN echo '\
     \n\
     client_max_body_size 50M;\n\
     \n\
-    \n\
     location /media/ {\n\
     alias /app/media/;\n\
     autoindex on;\n\
     }\n\
-
     location / {\n\
     proxy_pass http://127.0.0.1:8001;\n\
     proxy_set_header Host $host;\n\
