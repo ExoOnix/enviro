@@ -7,6 +7,9 @@ This document explains the environment variables used to configure your Enviro d
 - **DJANGO_SECRET_KEY**  
   Secret key for Django. Change this to a unique, unpredictable value in production.
 
+- **DEFAULT_SCHEME**
+  Set to `https` or `http`. This will set the redirects scheme.
+
 - **DEBUG**  
   Set to `True` for development, `False` for production.
 
@@ -69,6 +72,9 @@ This document explains the environment variables used to configure your Enviro d
 - **ROUTING_TYPE**
   Set routing type. if using subpath, environments will be placed on /environments/<id>. If using subdomain, environments will be placed on env-<id>.example.com. You need `HOSTNAME` to be set. Options: `subpath`, `subdomain`.
 
+- **SUBDOMAIN_PORTFORWARDING**
+  This sets the envs to be forwarded to subdomains instead of subpaths. This is good for many frameworks like NextJS who want to be run on the base path. Values: `true`, `false`.
+
 ## Email Settings
 
 - **EMAIL_BACKEND** Django email backend.  
@@ -109,6 +115,7 @@ After editing your `.env` file, restart your application for changes to take eff
 
 ```
 DJANGO_SECRET_KEY=your_secret_key
+DEFAULT_SCHEME=https
 DEBUG=False
 DJANGO_LOGLEVEL=info
 DJANGO_ALLOWED_HOSTS=localhost,django-docker,onixtech.org
@@ -136,6 +143,9 @@ ENV_LIMITS = 6
 HOSTNAME = onixtech.org # Only used if ROUTING_TYPE is subdomain
 ROUTING_TYPE = subpath
 
+SUBDOMAIN_PORTFORWARDING = false
+
+
 # Email
 EMAIL_BACKEND = django.core.mail.backends.console.EmailBackend # For smtp use django.core.mail.backends.smtp.EmailBackend
 
@@ -153,6 +163,7 @@ EMAIL_HOST_PASSWORD = ''
 
 ```
 DJANGO_SECRET_KEY=your_secret_key
+DEFAULT_SCHEME=https
 DEBUG=False
 DJANGO_LOGLEVEL=info
 DJANGO_ALLOWED_HOSTS=localhost,django-docker,onixtech.org,.onixtech.org
@@ -179,6 +190,9 @@ ENV_LIMITS = 6
 # Reverse proxy routing
 HOSTNAME = onixtech.org # Only used if ROUTING_TYPE is subdomain
 ROUTING_TYPE = subdomain
+
+SUBDOMAIN_PORTFORWARDING = true
+
 
 # Email
 EMAIL_BACKEND = django.core.mail.backends.console.EmailBackend # For smtp use django.core.mail.backends.smtp.EmailBackend
