@@ -56,7 +56,6 @@ def create_container(environment_id):
                     f"traefik.http.routers.{router_name}-alt.entrypoints": "web",
                     f"traefik.http.routers.{router_name}-alt.service": f"{service_name}-alt",
                     f"traefik.http.services.{service_name}-alt.loadbalancer.server.port": "23001",
-                    f"traefik.http.routers.{router_name}-alt.middlewares": f"{middleware_forwardauth}",
                     f"traefik.http.routers.{router_name}-alt.priority": "2000",
                 })
         elif routing_type == "subdomain":
@@ -79,7 +78,6 @@ def create_container(environment_id):
                     f"traefik.http.routers.{router_name}-alt.entrypoints": "web",
                     f"traefik.http.routers.{router_name}-alt.service": f"{service_name}-alt",
                     f"traefik.http.services.{service_name}-alt.loadbalancer.server.port": "23001",
-                    f"traefik.http.routers.{router_name}-alt.middlewares": f"{middleware_forwardauth}",
                     f"traefik.http.routers.{router_name}-alt.priority": "2000",
                 })
         run_kwargs = dict(
@@ -95,6 +93,10 @@ def create_container(environment_id):
             restart_policy={"Name": "unless-stopped"},
             detach=True
         )
+
+        if getattr(settings, "SUBDOMAIN_PORTFORWARDING", False):
+            run_kwargs["environment"]["VSCODE_PROXY_URI"] = f"{settings.DEFAULT_SCHEME}://env-{env_id}-{{{{port}}}}.{settings.HOSTNAME}"
+        
         # Only set command and entrypoint if using codercom/code-server:latest
         if environment.image == "codercom/code-server:latest":
             run_kwargs["command"] = [

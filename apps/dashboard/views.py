@@ -28,7 +28,7 @@ def dashboard(request):
                     'env_tempates': env_tempates,
                     'routing_type': routing_type,
                     'hostname': hostname,
-                    'protocol': 'https' if request.is_secure() else 'http',
+                    'protocol': settings.DEFAULT_SCHEME,
                  })
 
 @login_required
@@ -65,7 +65,7 @@ def create_env(request):
             'env_count': env_count,
             'routing_type': routing_type,
             'hostname': hostname,
-            'protocol': 'https' if request.is_secure() else 'http',
+            'protocol': settings.DEFAULT_SCHEME,
         })
 
 @login_required
@@ -100,7 +100,7 @@ def stop_env(request, env_id):
         'env_count': env_count,
         'routing_type': routing_type,
         'hostname': hostname,
-        'protocol': 'https' if request.is_secure() else 'http',
+        'protocol': settings.DEFAULT_SCHEME,
     })
 
 @login_required
@@ -125,5 +125,5 @@ def start_env(request, env_id):
         'env_count': env_count,
         'routing_type': routing_type,
         'hostname': hostname,
-        'protocol': 'https' if request.is_secure() else 'http',
+        'protocol': settings.DEFAULT_SCHEME,
     })
