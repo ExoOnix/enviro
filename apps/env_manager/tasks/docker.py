@@ -67,6 +67,11 @@ def create_container(environment_id):
             image=environment.image,
             labels=labels,
             network=network_name,
+            environment={
+                "ROUTING_TYPE": routing_type,
+                "ENV_ID": env_id,
+                "SERVER_HOSTNAME": settings.HOSTNAME,
+            },
             restart_policy={"Name": "unless-stopped"},
             detach=True
         )
