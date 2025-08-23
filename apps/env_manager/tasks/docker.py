@@ -47,8 +47,18 @@ def create_container(environment_id):
                 f"traefik.http.routers.{router_name}.middlewares": f"{middleware_forwardauth},{middleware_stripprefix}",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
-                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User"
+                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User",
             }
+            if getattr(settings, "SUBDOMAIN_PORTFORWARDING", False):
+                labels.update({
+                    # Additional router/service for port 23001 with wildcard subdomain
+                    f"traefik.http.routers.{router_name}-alt.rule": f"HostRegexp(`env-{env_id}-[0-9]+.{settings.HOSTNAME}`)",
+                    f"traefik.http.routers.{router_name}-alt.entrypoints": "web",
+                    f"traefik.http.routers.{router_name}-alt.service": f"{service_name}-alt",
+                    f"traefik.http.services.{service_name}-alt.loadbalancer.server.port": "23001",
+                    f"traefik.http.routers.{router_name}-alt.middlewares": f"{middleware_forwardauth}",
+                    f"traefik.http.routers.{router_name}-alt.priority": "2000",
+                })
         elif routing_type == "subdomain":
             subdomain = f"env-{env_id}.{settings.HOSTNAME}"
             labels = {
@@ -60,8 +70,18 @@ def create_container(environment_id):
                 f"traefik.http.routers.{router_name}.middlewares": f"{middleware_forwardauth}",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
-                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User"
+                f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User",
             }
+            if getattr(settings, "SUBDOMAIN_PORTFORWARDING", False):
+                labels.update({
+                    # Additional router/service for port 23001 with wildcard subdomain
+                    f"traefik.http.routers.{router_name}-alt.rule": f"HostRegexp(`env-{env_id}-[0-9]+.{settings.HOSTNAME}`)",
+                    f"traefik.http.routers.{router_name}-alt.entrypoints": "web",
+                    f"traefik.http.routers.{router_name}-alt.service": f"{service_name}-alt",
+                    f"traefik.http.services.{service_name}-alt.loadbalancer.server.port": "23001",
+                    f"traefik.http.routers.{router_name}-alt.middlewares": f"{middleware_forwardauth}",
+                    f"traefik.http.routers.{router_name}-alt.priority": "2000",
+                })
         run_kwargs = dict(
             name=container_name,
             image=environment.image,

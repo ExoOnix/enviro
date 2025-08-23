@@ -41,7 +41,9 @@ ENV_LIMITS = int(os.environ.get("ENV_LIMITS", "0"))
 HOSTNAME = os.environ.get("HOSTNAME", "onixtech.org")
 ROUTING_TYPE = os.environ.get("ROUTING_TYPE", "subpath")
 
-if ROUTING_TYPE == "subdomain":
+SUBDOMAIN_PORTFORWARDING = os.environ.get("SUBDOMAIN_PORTFORWARDING", "False").lower() == "true"
+
+if ROUTING_TYPE == "subdomain" or SUBDOMAIN_PORTFORWARDING:
     SESSION_COOKIE_DOMAIN = f".{HOSTNAME}"
     CSRF_COOKIE_DOMAIN = f".{HOSTNAME}"
 
@@ -148,7 +150,7 @@ MIDDLEWARE = [
 ]
 
 # Loading middleware
-if ROUTING_TYPE == "subdomain":
+if ROUTING_TYPE == "subdomain" or SUBDOMAIN_PORTFORWARDING:
     MIDDLEWARE.append("apps.env_manager.middleware.host_check.HostnameMiddleware")
 
 ROOT_URLCONF = 'core.urls'
