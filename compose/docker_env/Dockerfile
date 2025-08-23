@@ -47,6 +47,7 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=3s --retries=3 \
 ENTRYPOINT ["bash"]
 
 EXPOSE 23000
+EXPOSE 23001
 
 CMD ["-c", "sudo rm -f /var/run/docker/containerd/containerd.pid && \
     sudo rm -f /var/run/docker.pid && \
