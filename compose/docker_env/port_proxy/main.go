@@ -5,11 +5,45 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
-	"strings"
 	"os"
+	"strconv"
+	"strings"
 )
 
 var prefix string
+
+// Reserved ports that must never be proxied
+var reservedPorts = map[int]struct{}{
+	23000: {}, // code-server
+	23001: {}, // port_proxy
+	2375:  {}, // Docker API
+	2376:  {}, // Docker API TLS
+	2377:  {}, // Docker Swarm manager
+	7946:  {}, // Docker Swarm overlay
+	4789:  {}, // Docker VXLAN
+	6443:  {}, // Kubernetes API
+	10250: {}, // kubelet
+	10251: {}, // kube-scheduler
+	10252: {}, // kube-controller-manager
+	10255: {}, // kubelet read-only
+	2379:  {}, // etcd client
+	2380:  {}, // etcd peer
+}
+
+// check if a port is blacklisted
+func isBlacklisted(port int) bool {
+	// Block reserved ports
+	if _, found := reservedPorts[port]; found {
+		return true
+	}
+
+	// Optionally block privileged ports (0–1024)
+	if port <= 1024 && port != 80 {
+		return true
+	}
+
+	return false
+}
 
 func init() {
 	envID := os.Getenv("ENV_ID")
@@ -20,18 +54,21 @@ func init() {
 	prefix = "env-" + envID + "-"
 }
 
-
-func extractPortFromHost(host string) (string, bool) {
+func extractPortFromHost(host string) (int, bool) {
 	host = strings.Split(host, ":")[0]
 	parts := strings.Split(host, ".")
 	if len(parts) < 1 {
-		return "", false
+		return 0, false
 	}
 	subdomain := parts[0]
 	if !strings.HasPrefix(subdomain, prefix) {
-		return "", false
+		return 0, false
 	}
-	port := strings.TrimPrefix(subdomain, prefix)
+	portStr := strings.TrimPrefix(subdomain, prefix)
+	port, err := strconv.Atoi(portStr)
+	if err != nil {
+		return 0, false
+	}
 	return port, true
 }
 
@@ -42,7 +79,14 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	target, err := url.Parse("http://localhost:" + port)
+	// Check blacklist
+	if isBlacklisted(port) {
+		http.Error(w, "Forbidden", http.StatusForbidden)
+		log.Printf("Blocked request to blacklisted port: %d", port)
+		return
+	}
+
+	target, err := url.Parse("http://localhost:" + strconv.Itoa(port))
 	if err != nil {
 		http.Error(w, "Bad Gateway", http.StatusBadGateway)
 		return
