@@ -81,7 +81,7 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Check blacklist
 	if isBlacklisted(port) {
-		http.Error(w, "Forbidden", http.StatusForbidden)
+		http.Error(w, "Forbidden, this port is blacklisted for security reasons.", http.StatusForbidden)
 		log.Printf("Blocked request to blacklisted port: %d", port)
 		return
 	}
