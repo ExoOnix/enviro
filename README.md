@@ -174,8 +174,8 @@ After authenticating, click create project and start programming!
 ## Rough Roadmap
 - [x] Environment Templates
 - [x] Subdomain editors
+- [x] Subdomain port forwarding
 - [ ] More lightweight self hosting version of this app
-- [ ] Subdomain port forwarding
 - [ ] Kubernetes support
 - [ ] AI features
 - [ ] Integrate custom editor [OnixIDE](https://github.com/ExoOnix/OnixIDE)
