@@ -43,5 +43,23 @@
     "image": "ghcr.io/exoonix/enviro_jupyter-lab:latest",
     "description": "A development environment with the JupyterLab interface, preconfigured for Python development with support for Jupyter Notebooks."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 40,
+  "fields": {
+    "name": "Javascript",
+    "image": "ghcr.io/exoonix/enviro_javascript:latest",
+    "description": "A cloud development environment preconfigured for building and running Javascript applications."
+  }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 41,
+  "fields": {
+    "name": "Golang",
+    "image": "ghcr.io/exoonix/enviro_golang:latest",
+    "description": "A cloud development environment preconfigured for building and running Golang applications."
+  }
 }
 ]
