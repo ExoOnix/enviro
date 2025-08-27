@@ -61,5 +61,14 @@
     "image": "ghcr.io/exoonix/enviro_golang:latest",
     "description": "A cloud development environment preconfigured for building and running Golang applications."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 41,
+  "fields": {
+    "name": "NextJS",
+    "image": "ghcr.io/exoonix/enviro_javascript-nextjs:latest",
+    "description": "A cloud development environment preconfigured for building and running Next.js applications."
+  }
 }
 ]
