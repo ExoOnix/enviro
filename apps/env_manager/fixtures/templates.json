@@ -64,7 +64,7 @@
 },
 {
   "model": "env_manager.environmenttemplate",
-  "pk": 41,
+  "pk": 42,
   "fields": {
     "name": "NextJS",
     "image": "ghcr.io/exoonix/enviro_javascript-nextjs:latest",
