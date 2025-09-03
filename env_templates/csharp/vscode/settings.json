@@ -1,0 +1,7 @@
+{
+    "code-runner.executorMap": {
+        "csharp": "cd /home/coder/project && dotnet run #"
+    },
+    "code-runner.defaultLanguage": "csharp",
+    "code-runner.runInTerminal": true
+}
