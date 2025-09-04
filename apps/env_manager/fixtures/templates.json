@@ -79,5 +79,14 @@
     "image": "ghcr.io/exoonix/enviro_csharp:latest",
     "description": "A cloud development environment preconfigured for building and running C# applications."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 44,
+  "fields": {
+    "name": "Java",
+    "image": "ghcr.io/exoonix/enviro_java:latest",
+    "description": "A cloud development environment preconfigured for building and running Java applications with Maven."
+  }
 }
 ]
