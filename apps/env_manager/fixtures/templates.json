@@ -70,5 +70,14 @@
     "image": "ghcr.io/exoonix/enviro_javascript-nextjs:latest",
     "description": "A cloud development environment preconfigured for building and running Next.js applications."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 43,
+  "fields": {
+    "name": "C#",
+    "image": "ghcr.io/exoonix/enviro_csharp:latest",
+    "description": "A cloud development environment preconfigured for building and running C# applications."
+  }
 }
 ]
