@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        env_folder: [python-flask, c, javascript-express, rstudio, jupyter-lab, golang, javascript, javascript-nextjs, csharp, java]
+        env_folder: [python-flask, c, javascript-express, rstudio, jupyter-lab, golang, javascript, javascript-nextjs, csharp, java, rust]
 
     steps:
       - name: Checkout code
