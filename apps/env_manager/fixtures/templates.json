@@ -88,5 +88,14 @@
     "image": "ghcr.io/exoonix/enviro_java:latest",
     "description": "A cloud development environment preconfigured for building and running Java applications with Maven."
   }
+},
+{
+  "model": "env_manager.environmenttemplate",
+  "pk": 45,
+  "fields": {
+    "name": "Rust",
+    "image": "ghcr.io/exoonix/enviro_rust:latest",
+    "description": "A cloud development environment preconfigured for building and running Rust applications."
+  }
 }
 ]
