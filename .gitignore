@@ -99,3 +99,6 @@ static/css/tailwindcss
 # Build files
 /build
 /site
+
+
+!/env_templates/laravel-vue/resources/js/lib/utils.ts
