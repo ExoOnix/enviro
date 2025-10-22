@@ -40,8 +40,8 @@ develop-eggs/
 dist/
 downloads/
 eggs/
-lib/
-lib64/
+/lib/
+/lib64/
 parts/
 sdist/
 var/
@@ -99,6 +99,3 @@ static/css/tailwindcss
 # Build files
 /build
 /site
-
-
-!/env_templates/laravel-vue/template/resources/js/lib/utils.ts
