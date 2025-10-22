@@ -101,4 +101,4 @@ static/css/tailwindcss
 /site
 
 
-!/env_templates/laravel-vue/resources/js/lib/utils.ts
+!/env_templates/laravel-vue/template/resources/js/lib/utils.ts
