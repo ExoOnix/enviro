@@ -103,7 +103,7 @@
   "pk": 46,
   "fields": {
     "name": "Laravel Vue",
-    "image": "ghcr.io/exoonix/enviro_rust:latest",
+    "image": "ghcr.io/exoonix/enviro_laravel-vue:latest",
     "description": "A cloud development environment with the Laravel Vue starter kit. "
   }
 }
