@@ -36,9 +36,6 @@ RUN code-server --install-extension Vue.volar
 # Initialize Next.js app
 COPY --chown=coder:coder . /home/coder/project/
 
-RUN npm install
-RUN npm run build
-
 RUN composer install
 
 RUN composer run setup
