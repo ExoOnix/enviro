@@ -39,3 +39,7 @@ COPY --chown=coder:coder . /home/coder/project/
 RUN composer install
 
 RUN composer run setup
+
+RUN grep -q '^APP_URL=' .env \
+    && sed -i "s|^APP_URL=.*|APP_URL=https://env-\$ENV_ID-8000.\$SERVER_HOSTNAME|" .env \
+    || echo "APP_URL=https://env-\$ENV_ID-8000.\$SERVER_HOSTNAME" >> .env
