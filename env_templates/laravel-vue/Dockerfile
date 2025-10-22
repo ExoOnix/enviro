@@ -37,6 +37,7 @@ RUN code-server --install-extension Vue.volar
 COPY --chown=coder:coder . /home/coder/project/
 
 RUN npm install
+RUN npm run build
 
 RUN composer install
 
