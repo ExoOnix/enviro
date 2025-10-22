@@ -29,12 +29,16 @@ WORKDIR /home/coder/project
 
 USER coder
 
+COPY --chown=coder:coder ./vscode/settings.json /home/coder/.local/share/code-server/User/settings.json
+
 RUN code-server --install-extension laravel.vscode-laravel
 RUN code-server --install-extension bmewburn.vscode-intelephense-client
 RUN code-server --install-extension Vue.volar
+RUN code-server --install-extension damms005.devdb
+RUN code-server --install-extension bradlc.vscode-tailwindcss
 
 # Initialize Next.js app
-COPY --chown=coder:coder . /home/coder/project/
+COPY --chown=coder:coder ./template/ /home/coder/project/
 
 RUN composer install
 
