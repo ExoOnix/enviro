@@ -48,6 +48,7 @@ def create_container(environment_id):
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User",
+                "traefik.instance": "onix-traefik"
             }
             if getattr(settings, "SUBDOMAIN_PORTFORWARDING", False):
                 labels.update({
@@ -70,6 +71,7 @@ def create_container(environment_id):
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.address": "http://django-docker:8000/auth/",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.trustForwardHeader": "true",
                 f"traefik.http.middlewares.{middleware_forwardauth}.forwardauth.authResponseHeaders": "Remote-User",
+                "traefik.instance": "onix-traefik"
             }
             if getattr(settings, "SUBDOMAIN_PORTFORWARDING", False):
                 labels.update({
